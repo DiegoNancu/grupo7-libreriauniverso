@@ -14,7 +14,6 @@ app.options("*", cors());
 app.use("/api", proRoutes)
 
 
-
 const options = {
   useNewUrlParser: true,
   autoIndex: true,
