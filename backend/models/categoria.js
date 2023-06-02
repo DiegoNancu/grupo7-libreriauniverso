@@ -1,15 +1,11 @@
-import { Schema, model } from "mongoose";
-const schema = Schema;
+const mongoose = require("mongoose");
+const schema = mongoose.Schema;
 
 const categoriaSchema = new schema({
-  id_categoria: {
-    type: String,
-    required: true
-  },
-  costo: {
+  name: {
     type: String,
     required: true
   },
 })
 
-moudle.exports = model("categoria", categoriaSchema);
+module.exports = mongoose.model("categoria", categoriaSchema);

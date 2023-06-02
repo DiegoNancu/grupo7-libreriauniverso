@@ -1,8 +1,8 @@
-const productoSchema = requiere("../models/productos");
-const categoriaSchema = requiere("../models/categoria");
+const productoSchema = require('../models/productos');
+const categoriaSchema = require('../models/categoria');
 
 const createProduct = (req, res) => {
-  const { costo, precio_venta, nombre, stock, categoria } = req.body;
+  const { nombre, costo, precio_venta, stock, categoria } = req.body;
 
   if (!costo || !precio_venta || !nombre || !stock || !categoria) {
     return res.status(400).send({
@@ -10,19 +10,16 @@ const createProduct = (req, res) => {
     });
   }
 
-  if (costo <= 0 || precio_venta <= 0 || stock <= 0) {
+  if (costo <= 0 || precio_venta <= 0 || stock < 0) {
     return res.status(400).send({
       message: "Los valores deben ser mayores a 0"
     });
   }
 
-  const id_categoria = 1;
-
   const newProduct = new productoSchema({
-    id_producto: id_categoria,
+    nombre,
     costo,
     precio_venta,
-    nombre,
     stock,
     categoria
   });
@@ -33,7 +30,7 @@ const createProduct = (req, res) => {
       return res.status(400).send({ message: "Error al guardar el producto" });
     }
 
-    res.status(201).send({
+    return res.status(201).send({
       message: "Producto guardado",
       productSaved
     })
@@ -77,3 +74,10 @@ const deleteProducts = (req, res) => {
     return res.status(200).send({ message: "Producto eliminado" });
   });
 }
+
+module.exports = {
+  createProduct,
+  getProducts,
+  updateProducts,
+  deleteProducts
+};

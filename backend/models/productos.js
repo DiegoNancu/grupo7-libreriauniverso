@@ -1,8 +1,8 @@
-import { Schema, model } from "mongoose";
-const schema = Schema;
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const productoSchema = new schema({
-  id_producto: {
+const productoSchema = new Schema({
+  nombre: {
     type: String,
     required: true
   },
@@ -14,18 +14,14 @@ const productoSchema = new schema({
     type: Number,
     required: true
   },
-  nombre: {
-    type: String,
-    required: true
-  },
   stock: {
     type: Number,
     required: true
   },
-  id_categoria: [{
-    type: moongose.Schema.Types.ObjectId,
-    ref: "categoria"
+  categoria: [{
+    type: Schema.Types.ObjectId,
+    ref: 'categoria'
   }]
-})
+});
 
-moudle.exports = model("productos", productoSchema);
+module.exports = mongoose.model("productos", productoSchema);
