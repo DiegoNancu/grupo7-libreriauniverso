@@ -6,10 +6,13 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 mongoose.set('strictQuery', false);
+
+const comprasRoutes = require("./routes/comprasRoutes.js");
+
 app.use(cors());
 app.use(express.json());
 app.options("*", cors());
-
+app.use("/api", comprasRoutes);
 
 
 const options = {

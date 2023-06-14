@@ -10,10 +10,20 @@ const userSchema = new schema({
         type: String,
         required: true
     },
-    fecha_compra: {
+    fecha_reclamo: {
         type: Date,
         required: true
     },
+    motivo: {
+        type: String,
+        required: true
+    },
+    descripcion: {
+        type: String,
+        required: false,
+        minLength: 11,
+        maxLength: 500
+    },
 })
 
-moudle.exports = mongoose.model("compras", userSchema);
+moudle.exports = mongoose.model("reclamos", userSchema);
