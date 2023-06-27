@@ -1,18 +1,3 @@
-// import NavBar from '../components/NavBar';
-// import RecipeReviewCard from '../components/CardProduct';
-
-// const ListProducts = () => {
-//   return (
-//     <div>
-//       {/* <NavBar /> */}
-//       <RecipeReviewCard />
-//     </div>
-//   );
-// }
-
-// export default ListProducts;
-
-
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -41,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function ListProducts() {
+export default function RecipeReviewCard() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
