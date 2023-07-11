@@ -1,12 +1,11 @@
 import NavBar from '../components/NavBar';
-import Products from '../components/@Product/Products';
+import GirdPro from '../components/GirdPro';
 
 const ListProducts = () => {
   return (
-    <div>
-      <NavBar />
-      <Products />
-    </div>
+    <>
+      <GirdPro />
+    </>
   );
 }
 
