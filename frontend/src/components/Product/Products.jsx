@@ -10,27 +10,27 @@ import CardProduct from './CardProduct';
 
 export default function BasicGrid() {
   return (
-    <Box sx={{ flexGrow: 1, padding: 3 }}>
-      <Grid container spacing={1} >
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
 
         {/* {
           data.products.map((product) => (
-            <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Grid item xs={11} sm={6} md={4} lg={3}>
               <CardProduct key={product.id} product={product} />
             </Grid>
           ))
         } */}
 
-        <Grid item xs={12} sm={6} md={4} lg={3} ml={2} mt={2}>
+        <Grid item xs={11} sm={6} md={4} lg={3}>
           <CardProduct />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3} ml={2} mt={2}>
+        <Grid item xs={11} sm={6} md={4} lg={3}>
           <CardProduct />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3} ml={2} mt={2}>
+        <Grid item xs={11} sm={6} md={4} lg={3}>
           <CardProduct />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3} ml={2} mt={2}>
+        <Grid item xs={11} sm={6} md={4} lg={3}>
           <CardProduct />
         </Grid>
 

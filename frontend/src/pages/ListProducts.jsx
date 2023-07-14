@@ -3,9 +3,9 @@ import GirdPro from '../components/GirdPro';
 
 const ListProducts = () => {
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <GirdPro />
-    </>
+    </div>
   );
 }
 
