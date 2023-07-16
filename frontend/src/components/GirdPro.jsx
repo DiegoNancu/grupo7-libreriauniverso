@@ -44,7 +44,7 @@ export default function FullWidthGrid() {
   return (
     <Box>
       <Grid container spacing={1}>
-        <Grid item xs={3} md={2}>
+        <Grid item xs={3} md={2} mr={8} lg={3}>
           <Item>Categorias</Item>
           <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             {[0, 1, 2, 3].map((value) => {

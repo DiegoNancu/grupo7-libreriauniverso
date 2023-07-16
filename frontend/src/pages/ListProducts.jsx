@@ -7,12 +7,14 @@ import '../App.css';
 
 const ListProducts = () => {
   return (
-    <Box>
-      <NavBar />
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-        <GirdPro />
-      </Box>
-    </Box>
+    <div className="container">
+      <NavBar /> {/* Agrega el componente NavBar aquí */}
+      <div className="centered-container">
+        <div className="content">
+          <GirdPro />
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -21,16 +21,16 @@ export default function BasicGrid() {
           ))
         } */}
 
-        <Grid item xs={11} sm={6} md={4} lg={3}>
+        <Grid item xs={11} sm={6} md={4} lg={4}>
           <CardProduct />
         </Grid>
-        <Grid item xs={11} sm={6} md={4} lg={3}>
+        <Grid item xs={11} sm={6} md={4} lg={4}>
           <CardProduct />
         </Grid>
-        <Grid item xs={11} sm={6} md={4} lg={3}>
+        <Grid item xs={11} sm={6} md={4} lg={4}>
           <CardProduct />
         </Grid>
-        <Grid item xs={11} sm={6} md={4} lg={3}>
+        <Grid item xs={11} sm={6} md={4} lg={4}>
           <CardProduct />
         </Grid>
 
