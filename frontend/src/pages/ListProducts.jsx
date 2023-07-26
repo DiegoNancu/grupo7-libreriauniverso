@@ -1,6 +1,5 @@
 import NavBar from '../components/NavBar';
 import GirdPro from '../components/GirdPro';
-import Box from '@mui/material/Box';
 
 import '../App.css';
 
