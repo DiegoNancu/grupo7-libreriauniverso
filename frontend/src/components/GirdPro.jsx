@@ -125,7 +125,7 @@ export default function FullWidthGrid() {
     setSelectedCategory(event.target.value);
   };
 
-  const [value, setValue] = React.useState([20, 37]);
+  const [value, setValue] = React.useState([0, 100000]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -181,7 +181,7 @@ export default function FullWidthGrid() {
           </Box>
         </Stack>
 
-        <Grid item marginLeft={2}>
+        <Grid item marginLeft={4}>
           <Products />
         </Grid>
       </Grid>

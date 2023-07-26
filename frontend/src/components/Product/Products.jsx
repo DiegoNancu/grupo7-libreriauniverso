@@ -75,7 +75,7 @@ export default function BasicGrid() {
   console.log(data);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginTop: 2 }}>
 
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
           {/* Condición para mostrar el círculo de carga */}
