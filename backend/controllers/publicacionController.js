@@ -1,5 +1,4 @@
 const publicacion = require("../models/publicacion");
-const publicacion = require("../models/publicacion");
 
 const createPublicacion = (req, res) => {
     const { id_publicacion, id_producto, nombre_tienda, fecha, status, descripcion } = req.body;
@@ -65,9 +64,23 @@ const deletePublicacion = (req, res) => {
         });
     }
 
+const getPublicacionById = (req, res) => {
+    const { id } = req.params;
+    publicacion.findById(id, (err, publicacionbyid) => {
+        if (err) {
+            return res.status(400).send({ message: "Error en encontrar publicaciones"})
+        }
+        if (!publicacionbyid) {
+            return res.status(404).send({ message: "Publicaciones no encontradas"})
+        }
+        return res.status(200).send(publicacionbyid);
+    })
+}
+
     module.exports = {
         createPublicacion,
         getPublicacion,
         updatePublicacion,
-        deletePublicacion
+        deletePublicacion,
+        getPublicacionById
     };
