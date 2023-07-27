@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Products from './Product/Products';
-import { styled } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
@@ -11,7 +10,8 @@ import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button'; // Importa el componente Button de Material-UI
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function valuetext(value) {
   return `${value}°C`;
@@ -21,7 +21,7 @@ export default function FullWidthGrid() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [priceRange, setPriceRange] = useState([20, 37]);
+  const [priceRange, setPriceRange] = useState([0, 200000]); // Aumentar el rango del slider a [0, 500]
 
   const getCategory = async () => {
     try {
@@ -39,20 +39,17 @@ export default function FullWidthGrid() {
   }, []);
 
   const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
+    setSelectedCategory(event.target.value); // Usar directamente el value del evento
   };
 
   const handlePriceChange = (event, newValue) => {
     setPriceRange(newValue);
   };
-  const [value, setValue] = React.useState([0, 100000]);
 
-  const applyFilters = () => {
-    // Aquí puedes utilizar "selectedCategory" y "priceRange" para filtrar los productos
-    // Llama a una función o realiza una petición para obtener los productos filtrados y actualizar la vista.
-    // Por ejemplo:
-    // Filtrar productos basados en la categoría seleccionada y el rango de precios
-    // Luego, actualiza el estado de los productos filtrados y muestra la vista actualizada
+  const clearFilters = () => {
+    setSelectedCategory('');
+    setPriceRange([0, 200000]); // Restablecer el rango del slider a [0, 500]
+    // Aquí puedes restablecer los demás estados relacionados con los filtros si los hay
   };
 
   return (
@@ -77,7 +74,6 @@ export default function FullWidthGrid() {
               value={selectedCategory}
               onChange={handleCategoryChange}
               autoWidth
-              displayEmpty
               sx={{
                 backgroundColor: '#ffffff',
                 '& .MuiSelect-icon': {
@@ -88,19 +84,20 @@ export default function FullWidthGrid() {
               {loading ? (
                 <CircularProgress style={{ position: 'absolute', top: '50%', left: '50%' }} />
               ) : (
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                  {data.categories &&
-                    data.categories.map((category, index) => (
-                      <MenuItem key={index} value={category.name}>
-                        {category.name}
-                      </MenuItem>
-                    ))}
-                </Grid>
+                <MenuItem value="">
+                  <em>Seleccione una categoría</em>
+                </MenuItem>
               )}
+              {data.categories &&
+                data.categories.map((category) => (
+                  <MenuItem key={category._id} value={category._id}> {/* Usar directamente el _id como value */}
+                    {category.name}
+                  </MenuItem>
+                ))}
             </Select>
           </FormControl>
 
-          <Box sx={{ width: 190 }}>
+          <Box sx={{ width: 150 }}> {/* Reducir la anchura del slider */}
             <InputLabel>Precio</InputLabel>
             <Slider
               getAriaLabel={() => 'Temperature range'}
@@ -108,16 +105,18 @@ export default function FullWidthGrid() {
               onChange={handlePriceChange}
               valueLabelDisplay="auto"
               getAriaValueText={valuetext}
+              min={0} // Establecer el valor mínimo del slider a 0
+              max={200000} // Establecer el valor máximo del slider a 500
             />
           </Box>
 
-          <Button variant="contained" onClick={applyFilters}>
-            Aplicar filtros
+          <Button variant="contained" onClick={clearFilters} color="error" startIcon={<DeleteIcon />}>
+            Borrar filtros
           </Button>
         </Stack>
 
         <Grid item marginLeft={4}>
-          <Products />
+          <Products selectedCategory={selectedCategory} priceRange={priceRange} />
         </Grid>
       </Grid>
     </Box>
