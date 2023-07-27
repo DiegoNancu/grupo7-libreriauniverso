@@ -45,6 +45,7 @@ export default function FullWidthGrid() {
   const handlePriceChange = (event, newValue) => {
     setPriceRange(newValue);
   };
+  const [value, setValue] = React.useState([0, 100000]);
 
   const applyFilters = () => {
     // Aquí puedes utilizar "selectedCategory" y "priceRange" para filtrar los productos
@@ -115,7 +116,7 @@ export default function FullWidthGrid() {
           </Button>
         </Stack>
 
-        <Grid item marginLeft={2}>
+        <Grid item marginLeft={4}>
           <Products />
         </Grid>
       </Grid>

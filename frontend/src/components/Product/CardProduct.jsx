@@ -8,7 +8,7 @@ import logo from "../../assets/logo.jpg";
 
 export default function ActionAreaCard() {
   return (
-    <Card sx={{ maxWidth: 1000, marginBottom: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)' }}>
+    <Card sx={{ width: 300, marginBottom: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)' }}>
       <CardActionArea>
         <CardMedia
           component="img"
