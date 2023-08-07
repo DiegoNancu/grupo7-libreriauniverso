@@ -6,7 +6,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,14 +20,14 @@ const Login = () => {
   const router = useRouter();
 
   const goToSignUp = () => {
-    router.push('/sign_up');
+    router.push('/SignUp');
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(values);
     try {
-      const response = await axios.post(`${process.env.API_URL}/login`, values);
+      const response = await axios.post(`http://localhost:3001/api/login`, values);
       Cookies.set('email', response.data.person);
       Cookies.set('logged', 'true');
       if (response.status === 201) {
@@ -104,7 +104,7 @@ const Login = () => {
               <Button onClick={onSubmit} variant="contained" color="primary">
                 Iniciar sesión
               </Button>
-              <Button onClick={goToSignUp} variant="contained" color="primary">
+              <Button onClick={() => router.push('/SignUp')} variant="contained" color="primary">
                 Aún no tengo una cuenta
               </Button>
             </Stack>

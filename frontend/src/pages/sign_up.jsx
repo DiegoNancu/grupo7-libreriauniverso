@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button, Container, FormControl, FormLabel, Stack, InputAdornment, Input, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2'
-import { useRouter } from 'next/router'
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +24,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(values);
     try {
-      const response = await axios.post(`${process.env.API_URL}/sign_up`, values);
+      const response = await axios.post(`http://localhost:3001/api/sign_up`, values);
       console.log(response);
       if (response.status === 201) {
         Swal.fire({
@@ -34,7 +34,7 @@ const SignUp = () => {
           confirmButtonText: 'Ok',
         }).then((result) => {
           if (result.isConfirmed) {
-            router.push('/login');
+            router.push('/Login');
           }
         });
       } else {
