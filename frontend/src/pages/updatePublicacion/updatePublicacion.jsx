@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import NavBar from '../../components/NavBar';
 import { Stack, Container, FormControl, FormLabel, Input, Button, ButtonGroup, Card, CardBody, Text } from '@mui/material';
 
 export async function getServerSideProps(context) {
     try{
-        const res = await axios.get(`${process.env.API_URL}/listPro/search/${context.params.updateActa}`)
+        const res = await axios.get(`${process.env.API_URL}/listPro/`)
         return {
             props: {
                 data: res.data
@@ -15,7 +16,7 @@ export async function getServerSideProps(context) {
     }catch(error){
         return {
             redirect: {
-                destination: '/create/create_publicacion',
+                destination: '/create/createpublicacion',
                 permanet: false
             }
         }
@@ -25,7 +26,7 @@ export async function getServerSideProps(context) {
 const UpdatePro = (data) => {
     const router = useRouter()
 
-    const [Producto] = useState(data.data)
+    const [Productou] = useState(data.data)
 
     let [values, setProducto] = useState({
         nombre: '',
@@ -39,12 +40,12 @@ const UpdatePro = (data) => {
         e.preventDefault()
         for(const key in values) {
             if(values[key] === '') {
-                values[key] = Producto[key]
+                values[key] = Productou[key]
             }
         }
 
         try {
-            const response = await axios.put(`${process.env.API_URL}/updatePro/${Producto.id}`, values)
+            const response = await axios.put(`${process.env.API_URL}/updatePro/${Productou._id}`, values)
             if (response.status === 200) {
                 Swal.fire({
                     title: 'Publicacion actualizada',
@@ -82,6 +83,8 @@ const UpdatePro = (data) => {
     }
 
     return (
+        <div>
+            <NavBar />
         <Stack alignItems="center" textAlign="center">
             <Card sx={{ backgroundColor: 'white', borderRadius: 10, boxShadow: 'md' }}>
             </Card>
@@ -91,8 +94,8 @@ const UpdatePro = (data) => {
                     <FormLabel>Nombre</FormLabel>
                     <Input
                         type="text"
-                        name="nombre"
-                        defaultValue={Producto._nombre}
+                        name={"nombre"}
+                        defaultValue={Productou.nombre}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -100,8 +103,8 @@ const UpdatePro = (data) => {
                     <FormLabel>Costo</FormLabel>
                     <Input
                         type="Number"
-                        name="costo"
-                        defaultValue={Producto._costo}
+                        name={"costo"}
+                        defaultValue={Productou.costo}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -109,8 +112,8 @@ const UpdatePro = (data) => {
                     <FormLabel>Precio venta</FormLabel>
                     <Input
                         type="Number"
-                        name="precio_venta"
-                        defaultValue={Producto._precio_venta}
+                        name={"precio_venta"}
+                        defaultValue={Productou.precio_venta}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -118,8 +121,8 @@ const UpdatePro = (data) => {
                     <FormLabel>Stock</FormLabel>
                     <Input
                         type="Number"
-                        name="stock"
-                        defaultValue={Producto._stock}
+                        name={"stock"}
+                        defaultValue={Productou.stock}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -127,8 +130,8 @@ const UpdatePro = (data) => {
                     <FormLabel>Categoria</FormLabel>
                     <Input
                         type="Schema.Types.ObjectId"
-                        name="categoria"
-                        defaultValue={Producto._categoria}
+                        name={"categoria"}
+                        defaultValue={Productou.categoria}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -137,6 +140,7 @@ const UpdatePro = (data) => {
             </Stack>
             </Container>
         </Stack>
+        </div>
     )
 }
 

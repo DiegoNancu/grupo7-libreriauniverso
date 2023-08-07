@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Card, CardHeader, Typography, Button, Stack, Head, Grid, Container } from '@mui/material'
+import { Card, CardHeader, Typography, Button, Stack, Grid, Container } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Swal from 'sweetalert2'
-import { useRouter } from 'next/router'
+import NavBar from '../../components/NavBar';
+import CreatePubli from '../create/createpublicacion'
+//import { useRouter } from 'next/router'
 
 const PublicacionAdmin = () => {
 
     const [Publicaciones, setPublicacion] = useState([])
-
-    const router = useRouter ()
 
     const getPublicacion = async () => {
         try {
@@ -52,17 +52,13 @@ const PublicacionAdmin = () => {
         }
     }
 
-    const createShow = () => {
-        router.push('/create/createpublicacion')
-    }
-
     const showPublicaciones = () => {
         try{
             return Publicaciones.map(publi => {
                 return (
                     <Card key={publi._id} boxShadow="1" ml={30} my={4} variant="outlined" overflow="hidden" alignItems="center" borderRadius={20}>
                         <CardHeader
-                            title={<Typography variant="h6">{publi.nombre}</Typography>}
+                            title={<Typography variant="h6">{publi._nombre}</Typography>}
                             subheader={
                             <>
                                 <Typography variant="body2">{publi._costo}</Typography>
@@ -77,7 +73,7 @@ const PublicacionAdmin = () => {
                             <Typography variant="body2">{publi._valor_precio}</Typography>
                             <Typography variant="body2">{publi._stock}</Typography>
                             <Typography variant="body2">{publi._categoria}</Typography>
-                            <Button startIcon={<EditIcon />} color="primary" variant="contained" to={'/updatePro/${id}'} Component={Link}>Editar</Button>
+                            <Button startIcon={<EditIcon />} color="primary" variant="contained" to={'/updatePro/${publi._id}'} Component={Link}>Editar</Button>
                             <Button startIcon={<DeleteIcon />} color="error" variant="contained" onClick={() => deleteId(publi._id)}>Eliminar</Button>
                         </Stack>
                     </Card>
@@ -88,18 +84,18 @@ const PublicacionAdmin = () => {
     }
 
     return (
+        <div>
+            <NavBar />
         <Stack alignItems="center" textAlign="center">
         <Stack my={4}>
+            <Link to="/CreatePubli">
             <Button
                 variant="contained"
                 color="primary"
-                //onClick={() => createShow}
-                Component ={Link}
-                to = {'/CreatePubli'}
-                size="medium"
-                >
+                size="medium">
                 Crear Publicación
             </Button>
+            </Link>
         </Stack>
         <Container maxWidth="md">
             <Grid container spacing={2}>
@@ -107,6 +103,7 @@ const PublicacionAdmin = () => {
             </Grid>
         </Container>
         </Stack>
+        </div>
     )
 }
 
