@@ -5,11 +5,13 @@ import { Card, CardHeader, Typography, Button, Stack, Head, Grid, Container } fr
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Swal from 'sweetalert2'
+import { useRouter } from 'next/router'
 
 const PublicacionAdmin = () => {
 
     const [Publicaciones, setPublicacion] = useState([])
 
+    const router = useRouter ()
 
     const getPublicacion = async () => {
         try {
@@ -50,29 +52,33 @@ const PublicacionAdmin = () => {
         }
     }
 
+    const createShow = () => {
+        router.push('/create/createpublicacion')
+    }
+
     const showPublicaciones = () => {
         try{
             return Publicaciones.map(publi => {
                 return (
-                    <Card key={publi.id} boxShadow="1" ml={30} my={4} variant="outlined" overflow="hidden" alignItems="center" borderRadius={20}>
+                    <Card key={publi._id} boxShadow="1" ml={30} my={4} variant="outlined" overflow="hidden" alignItems="center" borderRadius={20}>
                         <CardHeader
                             title={<Typography variant="h6">{publi.nombre}</Typography>}
                             subheader={
                             <>
-                                <Typography variant="body2">{publi.costo}</Typography>
-                                <Typography variant="body2">{publi.valor_precio}</Typography>
-                                <Typography variant="body2">{publi.stock}</Typography>
-                                <Typography variant="body2">{publi.categoria}</Typography>
+                                <Typography variant="body2">{publi._costo}</Typography>
+                                <Typography variant="body2">{publi._valor_precio}</Typography>
+                                <Typography variant="body2">{publi._stock}</Typography>
+                                <Typography variant="body2">{publi._categoria}</Typography>
                             </>
                             }
                         />
                         <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" p={2}>
-                            <Typography variant="body2">{publi.costo}</Typography>
-                            <Typography variant="body2">{publi.valor_precio}</Typography>
-                            <Typography variant="body2">{publi.stock}</Typography>
-                            <Typography variant="body2">{publi.categoria}</Typography>
+                            <Typography variant="body2">{publi._costo}</Typography>
+                            <Typography variant="body2">{publi._valor_precio}</Typography>
+                            <Typography variant="body2">{publi._stock}</Typography>
+                            <Typography variant="body2">{publi._categoria}</Typography>
                             <Button startIcon={<EditIcon />} color="primary" variant="contained" to={'/updatePro/${id}'} Component={Link}>Editar</Button>
-                            <Button startIcon={<DeleteIcon />} color="error" variant="contained" onClick={() => deleteId(publi.id)}>Eliminar</Button>
+                            <Button startIcon={<DeleteIcon />} color="error" variant="contained" onClick={() => deleteId(publi._id)}>Eliminar</Button>
                         </Stack>
                     </Card>
                 )
@@ -87,11 +93,12 @@ const PublicacionAdmin = () => {
             <Button
                 variant="contained"
                 color="primary"
-                startIcon={<add_circle />}
-                to = {'/create/createpublicacion'} Component = {Link}
+                //onClick={() => createShow}
+                Component ={Link}
+                to = {'/CreatePubli'}
                 size="medium"
                 >
-                Crear Publicacion
+                Crear Publicación
             </Button>
         </Stack>
         <Container maxWidth="md">

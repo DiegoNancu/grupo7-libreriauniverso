@@ -92,7 +92,7 @@ const UpdatePro = (data) => {
                     <Input
                         type="text"
                         name="nombre"
-                        defaultValue={Producto.nombre}
+                        defaultValue={Producto._nombre}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -101,7 +101,7 @@ const UpdatePro = (data) => {
                     <Input
                         type="Number"
                         name="costo"
-                        defaultValue={Producto.costo}
+                        defaultValue={Producto._costo}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -110,7 +110,7 @@ const UpdatePro = (data) => {
                     <Input
                         type="Number"
                         name="precio_venta"
-                        defaultValue={Producto.precio_venta}
+                        defaultValue={Producto._precio_venta}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -119,7 +119,7 @@ const UpdatePro = (data) => {
                     <Input
                         type="Number"
                         name="stock"
-                        defaultValue={Producto.stock}
+                        defaultValue={Producto._stock}
                         onChange={onChange}
                     />
                 </FormControl>
@@ -128,7 +128,7 @@ const UpdatePro = (data) => {
                     <Input
                         type="Schema.Types.ObjectId"
                         name="categoria"
-                        defaultValue={Producto.categoria}
+                        defaultValue={Producto._categoria}
                         onChange={onChange}
                     />
                 </FormControl>

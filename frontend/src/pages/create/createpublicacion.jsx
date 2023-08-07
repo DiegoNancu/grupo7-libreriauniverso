@@ -24,7 +24,8 @@ const CreatePublicacion = () => {
         e.preventDefault()
         console.log(values)
         try{
-            const response = await axios.post(`${process.env.API_URL}/addPro`, values)
+            const response = await axios.post(`http://localhost:3001/api/addPro`, values)
+            console.log(response)
             if(response.status === 201){
                 Swal.fire({
                     title: 'Publicacion creada',
@@ -62,10 +63,10 @@ const CreatePublicacion = () => {
     }
 
     return(
-        <Stack alignItems="center" textAlign="center" sx={{ backgroundColor: "rgb(244,247,254)" }}>
+        <Stack alignItems="center" textAlign="center" >
             <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="h4" my={4}>Creacion de Producto</Typography>
-                <Stack my={4} alignItems="center" textAlign="center">
+                <Stack my={4} alignItems="center" textAlign="center" spacing={2}>
                     <TextField
                         label="Nombre Producto"
                         type="text"
@@ -78,7 +79,6 @@ const CreatePublicacion = () => {
                         type="Number"
                         onChange={onChange}
                         name="Costo"
-                        multiline
                         rows={1}
                         variant="outlined"
                     />
@@ -87,7 +87,6 @@ const CreatePublicacion = () => {
                         type="Number"
                         onChange={onChange}
                         name="precio_venta"
-                        multiline
                         rows={1}
                         variant="outlined"
                     />
@@ -96,7 +95,6 @@ const CreatePublicacion = () => {
                         type="Number"
                         onChange={onChange}
                         name="Stock"
-                        multiline
                         rows={1}
                         variant="outlined"
                     />
@@ -111,7 +109,7 @@ const CreatePublicacion = () => {
                     <Stack spacing={2}>
                         <ButtonGroup variant="outlined" spacing={2}>
                             <Button color="primary" onClick={onSubmit}>Crear</Button>
-                            <Button color="error" onClick={push.publicacionRouter}>Cancelar</Button>
+                            <Button color="error" onClick={publicacionRouter}>Cancelar</Button>
                         </ButtonGroup>
                     </Stack>
                 </Stack>
