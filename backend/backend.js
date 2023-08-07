@@ -5,11 +5,19 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 
+const proRoutes = require("./routes/producRoutes");
+const catRoutes = require("./routes/categoriaRoutes");
+const comprasRoutes = require("./routes/comprasRoutes.js");
+
 mongoose.set('strictQuery', false);
+
+
 app.use(cors());
 app.use(express.json());
 app.options("*", cors());
-
+app.use("/api", proRoutes);
+app.use("/api", catRoutes);
+app.use("/api", comprasRoutes);
 
 
 const options = {
