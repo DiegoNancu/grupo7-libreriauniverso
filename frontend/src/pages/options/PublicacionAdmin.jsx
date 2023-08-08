@@ -55,6 +55,7 @@ const PublicacionAdmin = () => {
                                 overflow="hidden"
                                 alignItems="center"
                                 borderRadius={20}
+                                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                             >
                                 <CardHeader
                                     title={<Typography variant="h6">{publi.nombre}</Typography>}
@@ -66,7 +67,7 @@ const PublicacionAdmin = () => {
                                         </>
                                     }
                                 />
-                                <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" p={2}>
+                                <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" p={2} flex={1}>
                                     <Button startIcon={<EditIcon />} color="primary" variant="contained" onClick={() => { navigate("/UpdatePubli", { state: publi }) }}>Editar</Button>
                                     <Button startIcon={<DeleteIcon />} color="error" variant="contained" onClick={() => deleteId(publi._id)}>Eliminar</Button>
                                 </Stack>
