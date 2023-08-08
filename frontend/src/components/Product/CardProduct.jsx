@@ -6,9 +6,10 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import logo from "../../assets/logo.jpg";
 
-export default function ActionAreaCard() {
+export default function ActionAreaCard({ product }) {
+
   return (
-    <Card sx={{ width: 300, marginBottom: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)' }}>
+    <Card sx={{ width: 200, marginBottom: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)' }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -18,14 +19,14 @@ export default function ActionAreaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            NAME
+            {product.nombre}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
-            PRICE
+            ${product.precio_venta}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            DESCRIPTION
-          </Typography>
+          {/* <Typography variant="body2" color="text.secondary">
+            {product.descripcion}
+          </Typography> */}
         </CardContent>
       </CardActionArea>
     </Card>

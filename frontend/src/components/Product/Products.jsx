@@ -24,7 +24,6 @@ export default function Products({ selectedCategory, priceRange }) {
     getProducts();
   }, [getProducts]);
 
-  // Filtrar los productos basados en la categoría seleccionada y el rango de precios
   const filteredProducts = Array.isArray(data.products)
     ? data.products.filter((product) => {
         const categoryMatch = selectedCategory ? product.categoria.includes(selectedCategory) : true;
@@ -34,31 +33,37 @@ export default function Products({ selectedCategory, priceRange }) {
       })
     : [];
 
+  // Divide los productos en grupos de tres
+  const productGroups = [];
+  for (let i = 0; i < filteredProducts.length; i += 3) {
+    productGroups.push(filteredProducts.slice(i, i + 3));
+  }
+
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        {loading ? (
-          <CircularProgress style={{ position: 'absolute', top: '50%', left: '50%' }} />
-        ) : (
-          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            {/* Verificar si hay productos filtrados */}
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <Grid item xs={11} sm={6} md={4} lg={3} key={product.id}>
-                  <CardProduct product={product} />
-                </Grid>
-              ))
-            ) : (
-              // Si no hay productos filtrados, mostrar mensaje de "No hay productos"
-              <Grid item xs={12}>
-                <Box sx={{ textAlign: 'center', fontStyle: 'italic' }}>
-                  No hay productos que coincidan con los filtros seleccionados.
-                </Box>
+      {loading ? (
+        <CircularProgress style={{ position: 'absolute', top: '50%', left: '50%' }} />
+      ) : (
+        <Grid container spacing={2}>
+          {productGroups.length > 0 ? (
+            productGroups.map((group, index) => (
+              <Grid container item key={index}  >
+                {group.map((product) => (
+                  <Grid item  key={product.id} paddingRight={2}>
+                    <CardProduct product={product}/>
+                  </Grid>
+                ))}
               </Grid>
-            )}
-          </Grid>
-        )}
-      </Grid>
+            ))
+          ) : (
+            <Grid item xs={12}>
+              <Box sx={{ textAlign: 'center', fontStyle: 'italic' }}>
+                No hay productos que coincidan con los filtros seleccionados.
+              </Box>
+            </Grid>
+          )}
+        </Grid>
+      )}
     </Box>
   );
 }
