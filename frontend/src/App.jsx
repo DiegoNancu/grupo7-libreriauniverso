@@ -6,6 +6,10 @@ import Chat from './pages/Chat';
 import CreateP from './pages/CreateP';
 import UpdateP from './pages/UpdateP';
 import AdminP from './pages/AdminP';
+import HistorialCompras from './pages/historial_compras_version_2'
+import SignUp from './pages/sign_up'
+import Login from './pages/login';
+import Reclamos from './pages/Reclamos'
 
 function App() {
   return (
@@ -18,6 +22,10 @@ function App() {
         <Route path="/ListProducts" element={<ListProducts />} />
         <Route path="/results/:nameP" element={<ResultsProduct />} />
         <Route path="/Chat" element={<Chat />} />
+        <Route path="/HistorialCompras" element={<HistorialCompras />} />
+        <Route path="/SignUp" element={<SignUp/>}/>
+        <Route path="/Login" element={<Login/>}/>
+        <Route path="/Reclamos" element={<Reclamos/>}/>
       </Routes>
     </BrowserRouter>
   );

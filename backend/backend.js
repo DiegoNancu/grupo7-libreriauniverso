@@ -7,6 +7,8 @@ dotenv.config();
 
 const proRoutes = require("./routes/productRoute");
 const catRoutes = require("./routes/categoriaRoutes");
+const comprasRoutes = require("./routes/comprasRoutes");
+const userRoutes = require("./routes/usersRoutes");
 
 mongoose.set('strictQuery', false);
 
@@ -16,7 +18,8 @@ app.use(express.json());
 app.options("*", cors());
 app.use("/api", proRoutes);
 app.use("/api", catRoutes);
-
+app.use("/api", comprasRoutes);
+app.use("/api", userRoutes);
 
 const options = {
   useNewUrlParser: true,
