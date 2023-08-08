@@ -1,5 +1,5 @@
 const compras = require("../models/compras")
-//(const user = require("../models/users");
+const user = require("../models/users");
 
 const createCompras = async (req, res) => {
     const { id_user, id_producto, fecha_compra} = req.body;
@@ -39,7 +39,7 @@ const getComprasByUser = (req, res) => {
         if (!person) {
             return res.status(404).send({ message: "Usuario no encontrado." });
         }
-        compras.findOne( {id_user : id} , (err, compras) => {
+        compras.find( {id_user : id} , (err, compras) => {
             if (err) {
                 return res.status(400).send({ mesage: "Error al obtener el historial de compras."})
             }

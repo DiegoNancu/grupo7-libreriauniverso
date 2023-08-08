@@ -6,6 +6,7 @@ import Chat from './pages/Chat';
 import HistorialCompras from './pages/historial_compras_version_2'
 import SignUp from './pages/sign_up'
 import Login from './pages/login';
+import Reclamos from './pages/Reclamos'
 import ChatAdmin from './pages/admin/ChatAdmin';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/HistorialCompras" element={<HistorialCompras />} />
         <Route path="/SignUp" element={<SignUp/>}/>
         <Route path="/Login" element={<Login/>}/>
+        <Route path="/Reclamos" element={<Reclamos/>}/>
       </Routes>
     </BrowserRouter>
   );
