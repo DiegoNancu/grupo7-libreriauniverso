@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useState  ,  useEffect} from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useRouter } from 'next/router'
 import { Stack, Container, Typography, TextField, Button, ButtonGroup } from '@mui/material';
+import {MenuItem} from '@mui/material';
+import {Select} from '@mui/material';
+import {CircularProgress} from '@mui/material';
+
 
 const CreatePublicacion = () => {
+
+    const [loading, setLoading] = useState(true);
 
     const [values, setPublicacion] = useState({
         nombre: '',
@@ -19,6 +25,20 @@ const CreatePublicacion = () => {
     const publicacionRouter = () => {
         router.push('/options/PublicacionAdmin')
     }
+
+    const [valcat, setValcat] = useState([])
+
+    const categorias = async () => {
+        const cat  = await axios.get('http://localhost:3001/api/listCat')
+        setValcat(cat.data)
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        categorias();
+    }, []);
+
+    console.log(valcat)
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -78,7 +98,7 @@ const CreatePublicacion = () => {
                         label="Costo"
                         type="Number"
                         onChange={onChange}
-                        name="Costo"
+                        name="costo"
                         rows={1}
                         variant="outlined"
                     />
@@ -94,18 +114,37 @@ const CreatePublicacion = () => {
                         label="Stock"
                         type="Number"
                         onChange={onChange}
-                        name="Stock"
+                        name="stock"
                         rows={1}
                         variant="outlined"
                     />
-                    <TextField
-                        label="Categoria"
-                        type="Schema.Types.ObjectId"
+                    <Select
+                        labelId="category-label"
                         onChange={onChange}
                         name="categoria"
-                        variant="outlined"
-                        InputLabelProps={{ shrink: true }}
-                    />
+                        autoWidth
+                        sx={{
+                        width: "225px",
+                        backgroundColor: '#fffff',
+                        '& .MuiSelect-icon': {
+                        color: '#555555',
+                        },
+                    }}
+                    >
+                    {loading ? (
+                    <CircularProgress style={{ position: 'absolute', top: '50%', left: '50%' }} />
+                    ) : (
+                    <MenuItem value="">
+                        <em>Seleccione una categoría</em>
+                    </MenuItem>
+                    )}
+                    {valcat.categories &&
+                    valcat.categories.map((category) => (
+                        <MenuItem key={category._id} value={category._id}>
+                            {category.name}
+                        </MenuItem>
+                    ))}
+                    </Select>
                     <Stack spacing={2}>
                         <ButtonGroup variant="outlined" spacing={2}>
                             <Button color="primary" onClick={onSubmit}>Crear</Button>

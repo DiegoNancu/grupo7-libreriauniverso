@@ -3,11 +3,12 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import NavBar from '../../components/NavBar';
-import { Stack, Container, FormControl, FormLabel, Input, Button, ButtonGroup, Card, CardBody, Text } from '@mui/material';
+import { Stack, Container, FormControl, FormLabel, Input, Button, Card } from '@mui/material';
+
 
 export async function getServerSideProps(context) {
     try{
-        const res = await axios.get(`${process.env.API_URL}/listPro/`)
+        const res = await axios.get(`http://localhost:3001/api/listPro`)
         return {
             props: {
                 data: res.data
@@ -103,7 +104,7 @@ const UpdatePro = (data) => {
                     <FormLabel>Costo</FormLabel>
                     <Input
                         type="Number"
-                        name={"costo"}
+                        name="costo"
                         defaultValue={Productou.costo}
                         onChange={onChange}
                     />
@@ -112,7 +113,7 @@ const UpdatePro = (data) => {
                     <FormLabel>Precio venta</FormLabel>
                     <Input
                         type="Number"
-                        name={"precio_venta"}
+                        name="precio_venta"
                         defaultValue={Productou.precio_venta}
                         onChange={onChange}
                     />
@@ -121,7 +122,7 @@ const UpdatePro = (data) => {
                     <FormLabel>Stock</FormLabel>
                     <Input
                         type="Number"
-                        name={"stock"}
+                        name="stock"
                         defaultValue={Productou.stock}
                         onChange={onChange}
                     />
@@ -130,7 +131,7 @@ const UpdatePro = (data) => {
                     <FormLabel>Categoria</FormLabel>
                     <Input
                         type="Schema.Types.ObjectId"
-                        name={"categoria"}
+                        name="categoria"
                         defaultValue={Productou.categoria}
                         onChange={onChange}
                     />
