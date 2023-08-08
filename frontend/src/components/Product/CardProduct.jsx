@@ -9,8 +9,8 @@ import logo from "../../assets/logo.jpg";
 export default function ActionAreaCard({ product }) {
 
   return (
-    <Card sx={{ width: 200, marginBottom: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)' }}>
-      <CardActionArea>
+    <Card sx={{ width: 200,height: 300, marginBottom: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)' }}>
+      <CardActionArea  sx={{ width: 200,height:300 }}>
         <CardMedia
           component="img"
           height="150"
@@ -18,10 +18,10 @@ export default function ActionAreaCard({ product }) {
           alt="Product"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h6" component="div">
             {product.nombre}
           </Typography>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h8" component="div" >
             ${product.precio_venta}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">

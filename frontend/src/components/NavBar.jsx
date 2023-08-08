@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { inputRef } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,11 +12,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate  } from 'react-router-dom';
 import logo from "../assets/logo.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+
 
 const pages = [
   {
@@ -37,6 +39,8 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [searchText, setSearchText] = React.useState('');
+  const history = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -176,10 +180,28 @@ function NavBar() {
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>
+
                 <StyledInputBase
                   placeholder="Search…"
+                  autoFocus
                   inputProps={{ 'aria-label': 'search' }}
+                  defaultValue={searchText}
+                  onInput={(event) => {
+                    setSearchText(event.target.value);
+                  }}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      console.log(event)
+                      // Realiza la redirección con el texto ingresado en el campo
+                      if (searchText.trim() !== '') {
+                        history(`/results/${searchText}`);
+                      }
+
+                    }
+                  }}
                 />
+
+
               </Search>
             </Box>
 
