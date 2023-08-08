@@ -45,7 +45,7 @@ const UpdatePro = (data) => {
         }
 
         try {
-            const response = await axios.put(`${process.env.API_URL}/updatePro/${Productou._id}`, values)
+            const response = await axios.put(`${process.env.API_URL}/updatePro/${Productou.id}`, values)
             if (response.status === 200) {
                 Swal.fire({
                     title: 'Publicacion actualizada',
@@ -54,7 +54,7 @@ const UpdatePro = (data) => {
                     confirmButtontext: 'OK'
                 }).then((result) => {
                     if(result.isConfirmed) {
-                        navigate('/options/PublicacionAdmin')
+                        navigate('/AdminPubli')
                     }
                 })
             }else{
