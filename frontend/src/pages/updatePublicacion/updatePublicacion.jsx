@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import NavBar from '../../components/NavBar';
-import { Stack, Container, FormControl, FormLabel, Input, Button, Card, MenuItem, Select, CircularProgress, OutlinedInput } from '@mui/material';
+import { Stack, Container, FormControl, FormLabel, Typography, Button, Card, MenuItem, Select, CircularProgress, OutlinedInput} from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const UpdatePro = (data) => {
