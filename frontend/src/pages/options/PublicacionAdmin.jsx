@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Card, CardHeader, Typography, Button, Stack, Grid, Container } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -8,6 +8,8 @@ import Swal from 'sweetalert2'
 import NavBar from '../../components/NavBar';
 
 const PublicacionAdmin = () => {
+
+    const navigate = useNavigate();
 
     const [publicaciones, setPublicacion] = useState([])
 
@@ -63,15 +65,13 @@ const PublicacionAdmin = () => {
                             subheader={
                             <>
                                 <Typography variant="body2">{"Costo:"}{publi.costo}</Typography>
-                                <Typography variant="body2">{publi.valor_precio}</Typography>
+                                <Typography variant="body2">{"Precio:"}{publi.precio_venta}</Typography>
                                 <Typography variant="body2">{"Cantidad:"}{publi.stock}</Typography>
                             </>
                             }
                         />
                         <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" useFlexGap flexWrap="wrap" p={2}>
-                            <Link to = "/UpdatePubli/${publi._id}">
-                                <Button startIcon={<EditIcon />} color="primary" variant="contained">Editar</Button>
-                            </Link>
+                            <Button startIcon={<EditIcon />} color="primary" variant="contained" onClick={() => {navigate("/UpdatePubli",{state:publi})}}>Editar</Button>
                             <Button startIcon={<DeleteIcon />} color="error" variant="contained" onClick={() => deleteId(publi._id)}>Eliminar</Button>
                         </Stack>
                         </Card>

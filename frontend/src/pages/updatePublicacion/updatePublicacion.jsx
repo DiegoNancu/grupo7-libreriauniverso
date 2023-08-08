@@ -1,51 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import NavBar from '../../components/NavBar';
-import { Stack, Container, FormControl, FormLabel, Input, Button, Card } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-
-export async function getServerSideProps(context) {
-    try{
-        const res = await axios.get(`${process.env.API_URL}/listPro/search/${context.params.UpdatePro}`)
-        return {
-            props: {
-                data: res.data
-            }
-        }
-    }catch(error){
-        return {
-            redirect: {
-                destination: '/create/createpublicacion',
-                permanet: false
-            }
-        }
-    }
-}
+import { Stack, Container, FormControl, FormLabel, Input, Button, Card, MenuItem, Select, CircularProgress, OutlinedInput } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const UpdatePro = (data) => {
     const navigate = useNavigate();
 
-    const [Productou] = useState(data.data)
+    const location = useLocation();
 
-    let [values, setProducto] = useState({
-        nombre: '',
-        costo: '',
-        precio_venta: '',
-        stock: '',
-        categoria: '',
-    })
+    const [valcat, setValcat] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+
+    let [values, setProducto] = useState(location.state)
+
+    const categorias = async () => {
+        const cat  = await axios.get('http://localhost:3001/api/listCat')
+        setValcat(cat.data)
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        categorias();
+    }, []);
 
     const onSubmit = async (e) =>  {
         e.preventDefault()
         for(const key in values) {
             if(values[key] === '') {
-                values[key] = Productou[key]
+                values[key] = values[key]
             }
         }
 
         try {
-            const response = await axios.put(`${process.env.API_URL}/updatePro/${Productou.id}`, values)
+            const response = await axios.put(`http://localhost:3001/api/updatePro/${values._id}`, values)
             if (response.status === 200) {
                 Swal.fire({
                     title: 'Publicacion actualizada',
@@ -85,58 +75,81 @@ const UpdatePro = (data) => {
     return (
         <div>
             <NavBar />
-        <Stack alignItems="center" textAlign="center">
+        <Stack alignItems="center" textAlign="center" spacing={{ xs: 1, sm: 2, md: 4 }}>
             <Card sx={{ backgroundColor: 'white', borderRadius: 10, boxShadow: 'md' }}>
             </Card>
-            <Container maxW="container.md" centerContent>
-            <Stack my={4} spacing={2}>
+            <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Typography variant="h4" my={4}>Actualización de Producto</Typography>
+            <Stack my={4} spacing={{ xs: 1, sm: 2, md: 4 }}>
                 <FormControl>
                     <FormLabel>Nombre</FormLabel>
-                    <Input
+                    <OutlinedInput
                         type="text"
-                        name={"nombre"}
-                        defaultValue={Productou.nombre}
+                        name="nombre"
+                        defaultValue={values.nombre}
                         onChange={onChange}
                     />
                 </FormControl>
                 <FormControl>
                     <FormLabel>Costo</FormLabel>
-                    <Input
+                    <OutlinedInput
                         type="Number"
-                        name="costo"
-                        defaultValue={Productou.costo}
+                        name= "costo"
+                        defaultValue={values.costo}
                         onChange={onChange}
                     />
                 </FormControl>
                 <FormControl>
                     <FormLabel>Precio venta</FormLabel>
-                    <Input
+                    <OutlinedInput
                         type="Number"
-                        name="precio_venta"
-                        defaultValue={Productou.precio_venta}
+                        name= "precio_venta"
+                        defaultValue={values.precio_venta}
                         onChange={onChange}
                     />
                 </FormControl>
-                <FormControl>
+                <FormControl variant='filled'>
                     <FormLabel>Stock</FormLabel>
-                    <Input
+                    <OutlinedInput
                         type="Number"
                         name="stock"
-                        defaultValue={Productou.stock}
+                        defaultValue={values.stock}
                         onChange={onChange}
                     />
                 </FormControl>
                 <FormControl>
-                    <FormLabel>Categoria</FormLabel>
-                    <Input
-                        type="Schema.Types.ObjectId"
-                        name="categoria"
-                        defaultValue={Productou.categoria}
+                <Select
+                        labelId="category-label"
                         onChange={onChange}
-                    />
+                        name="categoria"
+                        autoWidth
+                        sx={{
+                        width: "300px",
+                        backgroundColor: '#fffff',
+                        '& .MuiSelect-icon': {
+                        color: '#555555',
+                        },
+                    }}
+                    >
+                    {loading ? (
+                    <CircularProgress style={{ position: 'absolute', top: '50%', left: '50%' }} />
+                    ) : (
+                    <MenuItem value="">
+                        <em>Seleccione una categoría</em>
+                    </MenuItem>
+                    )}
+                    {valcat.categories &&
+                    valcat.categories.map((category) => (
+                        <MenuItem key={category._id} value={category._id}>
+                            {category.name}
+                        </MenuItem>
+                    ))}
+                    </Select>
                 </FormControl>
-                <Button variant="outlined" color="success"onClick={onSubmit}>Actualizar </Button>
-                <Button variant="outlined" color="error"onClick={() => navigate('/AdminPubli')}>Cancelar</Button>
+                <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap" p={2}>
+                    <Button variant="contained" color="success"onClick={onSubmit}>Actualizar </Button>
+                    <Button variant="contained" color="error"onClick={() => navigate('/AdminPubli')}>Cancelar</Button>
+                </Stack>
             </Stack>
             </Container>
         </Stack>

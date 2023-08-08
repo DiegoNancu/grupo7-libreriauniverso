@@ -80,7 +80,7 @@ const CreatePublicacion = () => {
     }
 
     return(
-        <Stack alignItems="center" textAlign="center" >
+        <Stack alignItems="center" textAlign="center" spacing={2}>
             <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="h4" my={4}>Creacion de Producto</Typography>
                 <Stack my={4} alignItems="center" textAlign="center" spacing={2}>
@@ -142,11 +142,9 @@ const CreatePublicacion = () => {
                         </MenuItem>
                     ))}
                     </Select>
-                    <Stack spacing={2}>
-                        <ButtonGroup variant="outlined" spacing={2}>
-                            <Button color="primary" onClick={onSubmit}>Crear</Button>
-                            <Button color="error" onClick={publicacionRouter}>Cancelar</Button>
-                        </ButtonGroup>
+                    <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap" >
+                        <Button variant="contained" color="primary" onClick={onSubmit}>Crear</Button>
+                        <Button variant="contained" color="error" onClick={publicacionRouter}>Cancelar</Button>
                     </Stack>
                 </Stack>
             </Container>
