@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { Card, CardHeader, Typography, Button, Stack, Grid, Container } from '@mui/material';
+import { Card, CardHeader, Typography, Button, Stack, Grid, Container, CardMedia } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 import AddIcon from '@mui/icons-material/Add';
+import logo from "../../assets/logo.jpg";
 
 const PublicacionAdmin = () => {
     const navigate = useNavigate();
@@ -57,13 +58,19 @@ const PublicacionAdmin = () => {
                                 alignItems="center"
                                 borderRadius={20}
                                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                            >
+                                >
+                                <CardMedia
+                                    component="img"
+                                    height="150"
+                                    image={logo}
+                                    alt="Product"
+                                />
                                 <CardHeader
                                     title={<Typography variant="h6">{publi.nombre}</Typography>}
                                     subheader={
                                         <>
-                                            <Typography variant="body2">{"Costo:"}{publi.costo}</Typography>
-                                            <Typography variant="body2">{"Precio:"}{publi.precio_venta}</Typography>
+                                            <Typography variant="body2">{"Costo:$"}{publi.costo}</Typography>
+                                            <Typography variant="body2">{"Precio:$"}{publi.precio_venta}</Typography>
                                             <Typography variant="body2">{"Cantidad:"}{publi.stock}</Typography>
                                         </>
                                     }
