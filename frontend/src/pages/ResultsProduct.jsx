@@ -45,7 +45,7 @@ function ResultsProduct() {
   return (
     <Stack>
       <NavBar/>
-      <Box sx={{ flexGrow: 1, marginTop: 2 }}>
+      <Box sx={{ flexGrow: 1, marginTop: '80px' }}>
         {loading ? (
           <CircularProgress style={{ marginTop: '50px' }} />
         ) : (

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { inputRef } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,7 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link,useNavigate  } from 'react-router-dom';
 import logo from "../assets/logo.jpg";
@@ -28,33 +26,22 @@ const pages = [
     name: 'Chat', route: '/Chat',
   },
   {
-    name: 'Tecnologia', route: '/Tecnologia',
-  },
-  {
-    name: 'Cuadernillos', route: '/Cuadernillos',
+    name: 'Historial', route: '/HistorialCompras',
   },
 ];
 
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [searchText, setSearchText] = React.useState('');
   const history = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   const Search = styled('div')(({ theme }) => ({
@@ -97,10 +84,10 @@ function NavBar() {
   }));
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: '#335eff' }}> 
+    <AppBar position="fixed" sx={{ backgroundColor: '#335eff'}}> 
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%'}}>
             <Typography
               variant="h6"
               noWrap
@@ -216,36 +203,3 @@ function NavBar() {
 
 export default NavBar;
 
-/*
-
-<Box sx={{ flexGrow: 0 }}>
-<Tooltip title="Open settings">
-  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-  </IconButton>
-</Tooltip>
-<Menu
-  sx={{ mt: '45px' }}
-  id="menu-appbar"
-  anchorEl={anchorElUser}
-  anchorOrigin={{
-    vertical: 'top',
-    horizontal: 'right',
-  }}
-  keepMounted
-  transformOrigin={{
-    vertical: 'top',
-    horizontal: 'right',
-  }}
-  open={Boolean(anchorElUser)}
-  onClose={handleCloseUserMenu}
->
-{settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-</Menu>
-</Box>
-
-*/

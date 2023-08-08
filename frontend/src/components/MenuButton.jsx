@@ -69,10 +69,10 @@ function MenuButton() {
     </>
     ):(
         <>
-        <MenuItem onClick={navigate('/Login')}>
+        <MenuItem onClick={()=>navigate('/Login')}>
           <Typography textAlign="center">Iniciar Sesión</Typography>
         </MenuItem>
-        <MenuItem onClick={navigate('/SignUp')}>
+        <MenuItem onClick={()=>navigate('/SignUp')}>
         <Typography textAlign="center">Registrarse</Typography>
       </MenuItem>
       </>
@@ -84,3 +84,6 @@ function MenuButton() {
 }
 
 export default MenuButton
+
+
+

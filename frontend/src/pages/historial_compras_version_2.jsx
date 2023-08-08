@@ -79,7 +79,7 @@ const Compras = () => {
   };
 
   return (
-    <Stack alignItems={'center'} textAlign={'center'}>
+    <Stack alignItems={'center'} textAlign={'center'} marginTop={'80px'}>
       <NavBar></NavBar>
       <Grid container columns={compras.length < 2 ? 1 : 4}>
         {showCompras()}

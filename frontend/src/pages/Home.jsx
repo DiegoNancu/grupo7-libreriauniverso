@@ -44,6 +44,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     padding: '20px',
+    marginTop: '80px'
   },
   headerImage: {
     maxWidth: '100%',

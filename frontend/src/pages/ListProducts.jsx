@@ -6,9 +6,9 @@ import '../App.css';
 
 const ListProducts = () => {
   return (
-    <div className="container">
+    <div className="container" >
       <NavBar /> {/* Agrega el componente NavBar aquí */}
-      <div className="centered-container">
+      <div className="centered-container" style={{ marginTop: '80px' }}>
         <div className="content">
           <GirdPro />
         </div>
