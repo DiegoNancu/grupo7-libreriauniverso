@@ -80,7 +80,7 @@ const CreatePublicacion = () => {
     }
 
     return(
-        <Stack alignItems="center" textAlign="center" spacing={2}>
+        <Stack alignItems="center" textAlign="center" spacing={2} marginTop={'75px'}>
             <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="h4" my={4}>Creacion de Producto</Typography>
                 <Stack my={4} alignItems="center" textAlign="center" spacing={2}>

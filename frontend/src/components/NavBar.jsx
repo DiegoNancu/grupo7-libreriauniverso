@@ -16,6 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuButton from '../components/MenuButton';
+import Cookies from 'js-cookie';
 
 
 const pages = [
@@ -29,7 +30,23 @@ const pages = [
     name: 'Historial', route: '/HistorialCompras',
   },
 ];
-
+const pagesadmin = [
+  {
+    name: 'Productos', route: '/ListProducts',
+  },
+  {
+    name: 'Libros', route: '/Libros',
+  },
+  {
+    name: 'Tecnologia', route: '/Tecnologia',
+  },
+  {
+    name: 'Cuadernillos', route: '/Cuadernillos',
+  },
+  {
+  name: 'Admin', route: '/AdminPubli',
+  },
+];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -107,17 +124,32 @@ function NavBar() {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page.name}
-                  onClick={handleCloseNavMenu}
-                  sx={{ mx: 2, color: 'white', display: 'block' }}
-                  component={Link}
-                  to={page.route}
-                >
-                  {page.name}
-                </Button>
-              ))}
+              {Cookies.get('logged') === 'true' ? (
+                pagesadmin.map((page) => (
+                  <Button
+                    key={page.name}
+                    onClick={handleCloseNavMenu}
+                    sx={{ mx: 2, color: 'white', display: 'block' }}
+                    component={Link}
+                    to={page.route}
+                  >
+                    {page.name}
+                  </Button>
+                ))
+              ) : (
+                pages.map((page) => (
+                  <Button
+                    key={page.name}
+                    onClick={handleCloseNavMenu}
+                    sx={{ mx: 2, color: 'white', display: 'block' }}
+                    component={Link}
+                    to={page.route}
+                  >
+                    {page.name}
+                  </Button>
+                ))
+              )}
+
             </Box>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -149,16 +181,23 @@ function NavBar() {
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" component={Link}
-                      to={page.route}
-                      sx={{ textDecoration: 'none', color: 'black' }}
-                    >
-                      {page.name}
-                    </Typography>
-                  </MenuItem>
-                ))}
+              {Cookies.get('logged') === 'true' ? (
+                pagesadmin.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    {page.name}
+                  </Typography>
+                </MenuItem>
+                ))
+              ) : (
+                pages.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    {page.name}
+                  </Typography>
+                </MenuItem>
+                ))
+              )}
               </Menu>
             </Box>
 
