@@ -3,7 +3,7 @@ import { Button, Container, FormControl, FormLabel, Stack, InputAdornment, Input
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useRouter } from 'next/router';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -18,7 +18,7 @@ const SignUp = () => {
     id_Companys: '',
   });
 
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ const SignUp = () => {
           confirmButtonText: 'Ok',
         }).then((result) => {
           if (result.isConfirmed) {
-            router.push('/Login');
+            navigate.push('/Login');
           }
         });
       } else {
@@ -120,7 +120,7 @@ const SignUp = () => {
             <Button variant="contained" color="primary" onClick={onSubmit}>
               Agregar
             </Button>
-            <Button variant="contained" color="secondary" component={Link} to={"/"}>
+            <Button variant="contained" color="secondary" component={Link} to={"/Login"}>
               Cancelar
             </Button>
           </Stack>

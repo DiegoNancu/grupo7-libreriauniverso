@@ -6,7 +6,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useRouter } from 'next/router';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,10 +17,10 @@ const Login = () => {
     password: '',
   });
 
-  const router = useRouter();
+  const navigate = useNavigate();
 
-  const goToSignUp = () => {
-    router.push('/SignUp');
+  const registrar = () => {
+    navigate('/SignUp');
   };
 
   const onSubmit = async (e) => {
@@ -38,7 +38,7 @@ const Login = () => {
           confirmButtonText: 'Ok',
         }).then((result) => {
           if (result.isConfirmed) {
-            router.push('/main_view');
+            navigate('/');
           }
         });
       } else {
@@ -104,7 +104,7 @@ const Login = () => {
               <Button onClick={onSubmit} variant="contained" color="primary">
                 Iniciar sesión
               </Button>
-              <Button onClick={() => router.push('/SignUp')} variant="contained" color="primary">
+              <Button onClick={registrar} variant="contained" color="primary">
                 Aún no tengo una cuenta
               </Button>
             </Stack>
