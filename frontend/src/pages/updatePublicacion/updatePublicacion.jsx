@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import NavBar from '../../components/NavBar';
 import { Stack, Container, FormControl, FormLabel, Input, Button, Card } from '@mui/material';
-
+import { useNavigate } from 'react-router-dom';
 
 export async function getServerSideProps(context) {
     try{
@@ -25,7 +24,7 @@ export async function getServerSideProps(context) {
 }
 
 const UpdatePro = (data) => {
-    const router = useRouter()
+    const navigate = useNavigate();
 
     const [Productou] = useState(data.data)
 
@@ -55,7 +54,7 @@ const UpdatePro = (data) => {
                     confirmButtontext: 'OK'
                 }).then((result) => {
                     if(result.isConfirmed) {
-                        router.push('/options/PublicacionAdmin')
+                        navigate('/options/PublicacionAdmin')
                     }
                 })
             }else{
@@ -137,7 +136,7 @@ const UpdatePro = (data) => {
                     />
                 </FormControl>
                 <Button variant="outlined" color="success"onClick={onSubmit}>Actualizar </Button>
-                <Button variant="outlined" color="error"onClick={() => router.push('/options/PublicacionAdmin')}>Cancelar</Button>
+                <Button variant="outlined" color="error"onClick={() => navigate('/options/PublicacionAdmin')}>Cancelar</Button>
             </Stack>
             </Container>
         </Stack>

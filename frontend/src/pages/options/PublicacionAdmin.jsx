@@ -6,8 +6,6 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Swal from 'sweetalert2'
 import NavBar from '../../components/NavBar';
-import CreatePubli from '../create/createpublicacion'
-//import { useRouter } from 'next/router'
 
 const PublicacionAdmin = () => {
 

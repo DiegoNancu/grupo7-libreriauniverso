@@ -1,14 +1,16 @@
 import { useState  ,  useEffect} from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { useRouter } from 'next/router'
 import { Stack, Container, Typography, TextField, Button, ButtonGroup } from '@mui/material';
 import {MenuItem} from '@mui/material';
 import {Select} from '@mui/material';
 import {CircularProgress} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 
 const CreatePublicacion = () => {
+
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
 
@@ -20,10 +22,8 @@ const CreatePublicacion = () => {
         categoria: ''
     })
 
-    const router = useRouter()
-
     const publicacionRouter = () => {
-        router.push('/options/PublicacionAdmin')
+        navigate('/options/PublicacionAdmin')
     }
 
     const [valcat, setValcat] = useState([])
