@@ -46,7 +46,7 @@ const PublicacionAdmin = () => {
     const showPublicaciones = () => {
         try {
             return (
-                <Grid container spacing={2}>
+                <Grid container spacing={2} marginTop={"80px"}>
                     {publicaciones.map((publi) => (
                         <Grid item xs={12} sm={6} md={4} key={publi._id}>
                             <Card
@@ -91,7 +91,7 @@ const PublicacionAdmin = () => {
 
     return (
         <div>
-            <Stack alignItems="center" textAlign="center">
+            <Stack alignItems="center" textAlign="center" marginTop={"80px"}>
                 <Stack my={4}>
                     <Link to="/CreatePubli">
                         <Button

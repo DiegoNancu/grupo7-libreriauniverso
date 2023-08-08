@@ -73,7 +73,7 @@ const UpdatePro = (data) => {
 
     return (
         <div>
-        <Stack alignItems="center" textAlign="center" spacing={{ xs: 1, sm: 2, md: 4 }}>
+        <Stack alignItems="center" textAlign="center" spacing={{ xs: 1, sm: 2, md: 4 }} marginTop={"80px"}>
             <Card sx={{ backgroundColor: 'white', borderRadius: 10, boxShadow: 'md' }}>
             </Card>
             <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

@@ -16,6 +16,7 @@ import logo from "../assets/logo.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import Cookies from 'js-cookie';
 
 const pages = [
   {
@@ -29,6 +30,24 @@ const pages = [
   },
   {
     name: 'Cuadernillos', route: '/Cuadernillos',
+  },
+];
+
+const pagesadmin = [
+  {
+    name: 'Productos', route: '/ListProducts',
+  },
+  {
+    name: 'Libros', route: '/Libros',
+  },
+  {
+    name: 'Tecnologia', route: '/Tecnologia',
+  },
+  {
+    name: 'Cuadernillos', route: '/Cuadernillos',
+  },
+  {
+  name: 'Admin', route: '/AdminPubli',
   },
 ];
 
@@ -146,13 +165,23 @@ function NavBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+              {Cookies.get('logged') === 'true' ? (
+                pagesadmin.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     {page.name}
                   </Typography>
                 </MenuItem>
-              ))}
+                ))
+              ) : (
+                pages.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    {page.name}
+                  </Typography>
+                </MenuItem>
+                ))
+              )}
             </Menu>
           </Box>
 
