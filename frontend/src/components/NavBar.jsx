@@ -25,7 +25,7 @@ const pages = [
     name: 'Productos', route: '/ListProducts',
   },
   {
-    name: 'Libros', route: '/Libros',
+    name: 'Chat', route: '/Chat',
   },
   {
     name: 'Tecnologia', route: '/Tecnologia',
@@ -97,7 +97,7 @@ function NavBar() {
   }));
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#335eff' }}>
+    <AppBar position="fixed" sx={{ backgroundColor: '#335eff' }}> 
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>

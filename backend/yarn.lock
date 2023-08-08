@@ -595,7 +595,7 @@
     "@smithy/types" "^2.0.2"
     tslib "^2.5.0"
 
-"@aws-sdk/types@3.337.0", "@aws-sdk/types@^3.222.0":
+"@aws-sdk/types@^3.222.0", "@aws-sdk/types@3.337.0":
   version "3.337.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/types/-/types-3.337.0.tgz#e45a2ebe3799002f552658fd81c52bd0255e5c72"
   integrity sha512-yR7e9iWMabUfNWkpQs05QXXBXGwp5cunkzVNeDvcAKgaxVVD2n8wY9Iocl324GvXMplJcnND9l0DvizkTak3yQ==
@@ -770,15 +770,15 @@
 
 "@smithy/protocol-http@^1.0.1":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@smithy/protocol-http/-/protocol-http-1.0.1.tgz#62fd73d73db285fd8e9a2287ed2904ac66e0d43f"
+  resolved "https://registry.npmjs.org/@smithy/protocol-http/-/protocol-http-1.0.1.tgz"
   integrity sha512-9OrEn0WfOVtBNYJUjUAn9AOiJ4lzERCJJ/JeZs8E6yajTGxBaFRxUnNBHiNqoDJVg076hY36UmEnPx7xXrvUSg==
   dependencies:
-    "@smithy/types" "^1.0.0"
+    "@smithy/types" "^1.2.0"
     tslib "^2.5.0"
 
 "@smithy/types@^1.0.0":
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@smithy/types/-/types-1.0.0.tgz#87ab6131fe5e19cbd4d383ffb94d2b806d027d38"
+  resolved "https://registry.npmjs.org/@smithy/types/-/types-1.0.0.tgz"
   integrity sha512-kc1m5wPBHQCTixwuaOh9vnak/iJm21DrSf9UK6yDE5S3mQQ4u11pqAUiKWnlrZnYkeLfAI9UEHj9OaMT1v5Umg==
   dependencies:
     "@smithy/util-buffer-from" "^2.0.0"
