@@ -80,8 +80,6 @@ const getOneP = (req, res) => {
 
   const { nameP } = req.params;
 
-  console.log(nameP)
-
   productoSchema.find({ nombre: { $regex: nameP, $options: 'i' } })
     .then((results) => {
       console.log(results);
