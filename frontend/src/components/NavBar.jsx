@@ -22,7 +22,7 @@ const pages = [
     name: 'Productos', route: '/ListProducts',
   },
   {
-    name: 'Libros', route: '/Libros',
+    name: 'Chat', route: '/Chat',
   },
   {
     name: 'Tecnologia', route: '/Tecnologia',
