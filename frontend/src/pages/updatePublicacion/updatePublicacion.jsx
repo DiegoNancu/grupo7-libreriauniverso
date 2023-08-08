@@ -74,7 +74,6 @@ const UpdatePro = (data) => {
 
     return (
         <div>
-            <NavBar />
         <Stack alignItems="center" textAlign="center" spacing={{ xs: 1, sm: 2, md: 4 }}>
             <Card sx={{ backgroundColor: 'white', borderRadius: 10, boxShadow: 'md' }}>
             </Card>

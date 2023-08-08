@@ -84,7 +84,6 @@ const PublicacionAdmin = () => {
 
     return (
         <div>
-            <NavBar />
         <Stack alignItems="center" textAlign="center">
         <Stack my={4}>
             <Link to="/CreatePubli">

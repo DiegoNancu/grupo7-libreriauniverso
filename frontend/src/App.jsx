@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
-import UpdatePro from './pages/updatePublicacion/updatePublicacion';
-import PublicacionAdmin from "./pages/options/PublicacionAdmin";
 import ListProducts from "./pages/ListProducts";
 import AddProduct from "./pages/admin/adminProducts";
 import Chat from './pages/Chat';
 import CreateP from './pages/CreateP';
+import UpdateP from './pages/UpdateP';
+import AdminP from './pages/AdminP';
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/CreatePubli" element={<CreateP />} />
-        <Route path="/UpdatePubli" element={<UpdatePro />} />
-        <Route path="/AdminPubli" element={<PublicacionAdmin />} />
+        <Route path="/UpdatePubli" element={<UpdateP />} />
+        <Route path="/AdminPubli" element={<AdminP />} />
         <Route path="/ListProducts" element={<ListProducts />} />
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/Chat" element={<Chat />} />
