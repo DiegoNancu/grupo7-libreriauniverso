@@ -25,11 +25,9 @@ const createProduct = (req, res) => {
   });
 
   newProduct.save((err, productSaved) => {
-
     if (err) {
       return res.status(400).send({ message: "Error al guardar el producto" });
     }
-
     return res.status(201).send({
       message: "Producto guardado",
       productSaved
@@ -42,14 +40,12 @@ const getProducts = (req, res) => {
     if (err) {
       return res.status(400).send({ message: "Error al obtener los productos" });
     }
-
     res.status(200).send({ products });
   });
 };
 
 const updateProducts = (req, res) => {
   const { id } = req.params;
-
   productoSchema.findByIdAndUpdate(id, req.body, (err, productUpdated) => {
     if (err) {
       return res.status(400).send({ message: "Error al actualizar el producto" });
@@ -63,7 +59,6 @@ const updateProducts = (req, res) => {
 
 const deleteProducts = (req, res) => {
   const { id } = req.params;
-
   productoSchema.findByIdAndDelete(id, (err, productDeleted) => {
     if (err) {
       return res.status(400).send({ message: "Error al eliminar el producto" });
@@ -93,10 +88,24 @@ const getOneP = (req, res) => {
 }
 
 
+const getProductsById = (req, res) => {
+  const { id } = req.params;
+  productoSchema.findById(id, (error, products) => {
+    if (error) {
+      return res.status(400).send({message: "Error."});
+    }
+    if (!products) {
+      return res.status(404).send({message: "Producto no encontrado."});
+    }
+    return res.status(200).send(products);
+  })
+}
+
 module.exports = {
   createProduct,
   getProducts,
   updateProducts,
   deleteProducts,
-  getOneP
+  getOneP,
+  getProductsById
 };
