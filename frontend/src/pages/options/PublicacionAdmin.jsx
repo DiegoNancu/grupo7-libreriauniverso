@@ -5,6 +5,7 @@ import { Card, CardHeader, Typography, Button, Stack, Grid, Container } from '@m
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
+import AddIcon from '@mui/icons-material/Add';
 
 const PublicacionAdmin = () => {
     const navigate = useNavigate();
@@ -87,6 +88,7 @@ const PublicacionAdmin = () => {
                 <Stack my={4}>
                     <Link to="/CreatePubli">
                         <Button
+                            startIcon={<AddIcon/>}
                             variant="contained"
                             color="primary"
                             size="medium">
