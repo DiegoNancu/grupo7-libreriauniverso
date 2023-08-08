@@ -3,6 +3,9 @@ import Home from "./pages/Home";
 import ListProducts from "./pages/ListProducts";
 import AddProduct from "./pages/admin/adminProducts";
 import Chat from './pages/Chat';
+import HistorialCompras from './pages/historial_compras_version_2'
+import SignUp from './pages/sign_up'
+import Login from './pages/login';
 
 function App() {
   return (
@@ -12,6 +15,9 @@ function App() {
         <Route path="/ListProducts" element={<ListProducts />} />
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/Chat" element={<Chat />} />
+        <Route path="/HistorialCompras" element={<HistorialCompras />} />
+        <Route path="/SignUp" element={<SignUp/>}/>
+        <Route path="/Login" element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   );
