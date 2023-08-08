@@ -1,18 +1,17 @@
-import NavBar from '../components/NavBar';
-import ChatBox from '../components/chat/ChatBox';
+import NavBar from '../../components/NavBar';
+import ChatBoxAdmin from '../../components/chat/ChatBoxAdmin';
 
-
-const Chat = () => {
+const ChatAdmin = () => {
   return (
     <div className="container">
       <NavBar /> {/* Agrega el componente NavBar aquí */}
       <div className="centered-container" style={{ paddingTop: '64px' }}>
         <div className="content">
-          <ChatBox/>
+          <ChatBoxAdmin/>
         </div>
       </div>
     </div>
   );
 }
 
-export default Chat;
+export default ChatAdmin;

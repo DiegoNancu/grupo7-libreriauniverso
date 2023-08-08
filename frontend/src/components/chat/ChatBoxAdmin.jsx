@@ -6,7 +6,7 @@ import axios from 'axios';
 const url = 'http://localhost:3001/api/getMensajes'
 const urlSend = 'http://localhost:3001/api/createMensaje'
 
-const ChatBox = () => {
+const ChatBoxAdmin = () => {
   const [ mensajes, setMensajes ] = React.useState([])
   const [ mensaje, setMensaje ] = React.useState("")
 
@@ -63,8 +63,8 @@ const ChatBox = () => {
               borderRadius: '10px',
               boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
               height: 'auto',
-              alignSelf: mensaje.origen === "0.000.000-0" ? 'flex-start' : 'flex-end',
-              textAlign: mensaje.origen === "0.000.000-0" ? 'left' : 'right'
+              alignSelf: mensaje.origen === "0.000.000-0" ? 'flex-end' : 'flex-start',
+              textAlign: mensaje.origen === "0.000.000-0" ? 'right' : 'left'
             }}
           >
             <CardContent>
@@ -103,4 +103,4 @@ const ChatBox = () => {
   );
 }
 
-export default ChatBox;
+export default ChatBoxAdmin;
