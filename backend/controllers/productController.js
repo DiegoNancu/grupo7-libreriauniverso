@@ -75,9 +75,28 @@ const deleteProducts = (req, res) => {
   });
 }
 
+
+const getOneP = (req, res) => {
+
+  const { nameP } = req.params;
+
+  productoSchema.find({ nombre: { $regex: nameP, $options: 'i' } })
+    .then((results) => {
+      console.log(results);
+      res.status(200).json(results);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+
+}
+
+
 module.exports = {
   createProduct,
   getProducts,
   updateProducts,
-  deleteProducts
+  deleteProducts,
+  getOneP
 };
