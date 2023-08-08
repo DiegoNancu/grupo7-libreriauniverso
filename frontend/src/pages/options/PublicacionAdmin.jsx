@@ -56,7 +56,8 @@ const PublicacionAdmin = () => {
         try{
             return publicaciones.map(publi => {
                 return (
-                    <Card key={publi._id} boxShadow="1" ml={30} my={4} variant="outlined" overflow="hidden" alignItems="center" borderRadius={20}>
+                    <Stack key={publi._id} direction="row" spacing={2} justifyContent="center" alignItems="center" useFlexGap flexWrap="wrap" p={2}>
+                        <Card boxShadow="1" ml={30} my={4} variant="outlined" overflow="hidden" alignItems="center" spacing={{ xs: 1, sm: 2, md: 4 }} borderRadius={20}>
                         <CardHeader
                             title={<Typography variant="h6">{publi.nombre}</Typography>}
                             subheader={
@@ -67,13 +68,14 @@ const PublicacionAdmin = () => {
                             </>
                             }
                         />
-                        <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" p={2}>
-                            <Link to = "/updatePro/${publi._id}">
+                        <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" useFlexGap flexWrap="wrap" p={2}>
+                            <Link to = "/UpdatePubli/${publi._id}">
                                 <Button startIcon={<EditIcon />} color="primary" variant="contained">Editar</Button>
                             </Link>
                             <Button startIcon={<DeleteIcon />} color="error" variant="contained" onClick={() => deleteId(publi._id)}>Eliminar</Button>
                         </Stack>
-                    </Card>
+                        </Card>
+                    </Stack>
                 )
             })
         }catch(err){

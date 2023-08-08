@@ -136,7 +136,7 @@ const UpdatePro = (data) => {
                     />
                 </FormControl>
                 <Button variant="outlined" color="success"onClick={onSubmit}>Actualizar </Button>
-                <Button variant="outlined" color="error"onClick={() => navigate('/options/PublicacionAdmin')}>Cancelar</Button>
+                <Button variant="outlined" color="error"onClick={() => navigate('/AdminPubli')}>Cancelar</Button>
             </Stack>
             </Container>
         </Stack>
