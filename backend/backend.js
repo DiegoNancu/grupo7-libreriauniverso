@@ -5,7 +5,7 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 
-const proRoutes = require("./routes/producRoutes");
+const proRoutes = require("./routes/productRoute");
 const catRoutes = require("./routes/categoriaRoutes");
 
 mongoose.set('strictQuery', false);
