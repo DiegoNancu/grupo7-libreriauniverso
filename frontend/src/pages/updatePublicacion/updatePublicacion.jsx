@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export async function getServerSideProps(context) {
     try{
-        const res = await axios.get(`http://localhost:3001/api/listPro`)
+        const res = await axios.get(`${process.env.API_URL}/listPro/search/${context.params.UpdatePro}`)
         return {
             props: {
                 data: res.data
@@ -33,7 +33,7 @@ const UpdatePro = (data) => {
         costo: '',
         precio_venta: '',
         stock: '',
-        categoria: ''
+        categoria: '',
     })
 
     const onSubmit = async (e) =>  {

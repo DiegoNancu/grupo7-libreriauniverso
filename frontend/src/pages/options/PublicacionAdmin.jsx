@@ -9,12 +9,13 @@ import NavBar from '../../components/NavBar';
 
 const PublicacionAdmin = () => {
 
-    const [Publicaciones, setPublicacion] = useState([])
+    const [publicaciones, setPublicacion] = useState([])
 
     const getPublicacion = async () => {
         try {
-            const response = await axios.get(`${process.env.API_URL}/listPro`)
-            setPublicacion(response.data)
+            const response = await axios.get(`http://localhost:3001/api/listPro`)
+            setPublicacion(response.data.products)
+            console.log(response.data.products)
         }catch (error){
         }
     }
@@ -38,9 +39,10 @@ const PublicacionAdmin = () => {
                         'Eliminado',
                         'Publicacion eliminada.',
                         'OK'
-                    ).then((result) => {
+                    ).then( async (result) => {
                         if (result.isConfirmed) {
-                            axios.delete(`${process.env.API_URL}/deletePro/${id}`)
+                            await axios.delete(`http://localhost:3001/api/deletePro/${id}`)
+                            getPublicacion()
                         }
                     })
                 }
@@ -52,26 +54,23 @@ const PublicacionAdmin = () => {
 
     const showPublicaciones = () => {
         try{
-            return Publicaciones.map(publi => {
+            return publicaciones.map(publi => {
                 return (
                     <Card key={publi._id} boxShadow="1" ml={30} my={4} variant="outlined" overflow="hidden" alignItems="center" borderRadius={20}>
                         <CardHeader
-                            title={<Typography variant="h6">{publi._nombre}</Typography>}
+                            title={<Typography variant="h6">{publi.nombre}</Typography>}
                             subheader={
                             <>
-                                <Typography variant="body2">{publi._costo}</Typography>
-                                <Typography variant="body2">{publi._valor_precio}</Typography>
-                                <Typography variant="body2">{publi._stock}</Typography>
-                                <Typography variant="body2">{publi._categoria}</Typography>
+                                <Typography variant="body2">{"Costo:"}{publi.costo}</Typography>
+                                <Typography variant="body2">{publi.valor_precio}</Typography>
+                                <Typography variant="body2">{"Cantidad:"}{publi.stock}</Typography>
                             </>
                             }
                         />
                         <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" p={2}>
-                            <Typography variant="body2">{publi._costo}</Typography>
-                            <Typography variant="body2">{publi._valor_precio}</Typography>
-                            <Typography variant="body2">{publi._stock}</Typography>
-                            <Typography variant="body2">{publi._categoria}</Typography>
-                            <Button startIcon={<EditIcon />} color="primary" variant="contained" to={'/updatePro/${publi._id}'} Component={Link}>Editar</Button>
+                            <Link to = "/updatePro/${publi._id}">
+                                <Button startIcon={<EditIcon />} color="primary" variant="contained">Editar</Button>
+                            </Link>
                             <Button startIcon={<DeleteIcon />} color="error" variant="contained" onClick={() => deleteId(publi._id)}>Eliminar</Button>
                         </Stack>
                     </Card>

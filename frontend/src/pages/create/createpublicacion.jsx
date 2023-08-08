@@ -20,7 +20,7 @@ const CreatePublicacion = () => {
     })
 
     const publicacionRouter = () => {
-        navigate('/options/PublicacionAdmin')
+        navigate('/AdminPubli')
     }
 
     const [valcat, setValcat] = useState([])
