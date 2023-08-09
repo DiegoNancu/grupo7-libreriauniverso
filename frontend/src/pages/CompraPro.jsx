@@ -35,17 +35,17 @@ const CompraPro = () => {
     try {
       const response = await axios.get(`http://localhost:3001/api/listPro/search/${id}`);
       const userId = await axios.get(`http://localhost:3001/api/getUserByEmail/${Cookies.get('email')}`);
-      setData(response.data);
+      setData(response.data.product);
       
       if(formData.nombreProducto === ''){
         setFormData({
           ...formData,
-          nombreProducto: response.data.nombre,
+          nombreProducto: response.data.product.nombre,
         })
 
         setCompra({
           id_user: userId.data._id,
-          id_producto: response.data._id,
+          id_producto: response.data.product._id,
           fecha_compra: currentDate.toISOString(),
         });
 

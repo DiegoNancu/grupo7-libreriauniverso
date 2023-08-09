@@ -72,6 +72,9 @@ const deleteProducts = (req, res) => {
 
 const getProductById = (req, res) => {
   const { id } = req.params;
+
+  console.log(id);
+
   productoSchema.findById( id , (err, product) => {
     if (err) {
       return res.status(400).send({ message: "Error al obtener el producto" });

@@ -20,36 +20,43 @@ import Cookies from 'js-cookie';
 import TextField from '@mui/material/TextField';
 
 
-const pages = [
-  {
-    name: 'Productos', route: '/ListProducts',
-  },
-  {
-    name: 'Chat', route: '/Chat',
-  },
-  {
-    name: 'Historial', route: '/HistorialCompras',
-  },
-];
-const pagesadmin = [
-  {
-    name: 'Productos', route: '/ListProducts',
-  },
-  {
-    name: 'Chat', route: '/ChatAdminUserList',
-  },
-  {
-    name: 'Historial', route: '/HistorialCompras',
-  },
-  {
-  name: 'Admin', route: '/AdminPubli',
-  },
-];
+
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [searchText, setSearchText] = React.useState('');
   const history = useNavigate();
+
+  const pages = [
+    {
+      name: 'Productos', route: '/ListProducts',
+    },
+    {
+      name: 'Chat', route: Cookies.get('logged') === 'true' ? '/Chat' : '/Login',
+    },
+    {
+      name: 'Historial', route: '/HistorialCompras',
+    },
+  ];
+  const pagesadmin = [
+    {
+      name: 'Productos', route: '/ListProducts',
+    },
+    {
+      name: 'Chat', route: '/ChatAdminUserList',
+    },
+    {
+      name: 'Historial', route: '/HistorialCompras',
+    },
+    {
+    name: 'Admin', route: '/AdminPubli',
+    },
+  ];
+
+
+
+
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -136,15 +143,18 @@ function NavBar() {
                 ))
               ) : (
                 pages.map((page) => (
+
                   <Button
-                    key={page.name}
-                    onClick={handleCloseNavMenu}
-                    sx={{ mx: 2, color: 'white', display: 'block' }}
-                    component={Link}
-                    to={page.route}
-                  >
-                    {page.name}
-                  </Button>
+                      key={page.name}
+                      onClick={handleCloseNavMenu}
+                      sx={{ mx: 2, color: 'white', display: 'block' }}
+                      component={Link}
+                      to={page.route}
+                    >
+                      {page.name}
+                    </Button>
+
+                  
                 ))
               )}
 

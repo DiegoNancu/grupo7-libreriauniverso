@@ -14,22 +14,23 @@ const Product = () => {
   const { id } = useParams();
   const history = useNavigate();
 
-  const getCategory = useCallback(async () => {
+  const getCategory = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/api/listPro/search/${id}`);
-      
-      setData(response.data);
-      
+      setData(response.data.product);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
       setLoading(false);
     }
-  }, [id]);
+  };
 
   useEffect(() => {
     getCategory();
-  }, [getCategory]);
+  }, []);
+
+
+
 
 
   const addToCart = (quantity) => {
@@ -57,6 +58,7 @@ const Product = () => {
     }
   };
 
+  console.log(data.stock)
 
   return (
     <Card className="Product">
