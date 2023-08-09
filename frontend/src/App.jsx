@@ -8,6 +8,7 @@ import SignUp from './pages/sign_up'
 import Login from './pages/login';
 import Reclamos from './pages/Reclamos'
 import ChatAdmin from './pages/admin/ChatAdmin';
+import ChatAdminUserList from './pages/admin/ChatAdminUserList';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/Chat" element={<Chat />} />
         <Route path="/ChatAdmin" element={<ChatAdmin />} />
+        <Route path="/ChatAdminUserList" element={<ChatAdminUserList />} />
         <Route path="/HistorialCompras" element={<HistorialCompras />} />
         <Route path="/SignUp" element={<SignUp/>}/>
         <Route path="/Login" element={<Login/>}/>
