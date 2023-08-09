@@ -36,7 +36,7 @@ const pagesadmin = [
     name: 'Productos', route: '/ListProducts',
   },
   {
-    name: 'Chat', route: '/Chat',
+    name: 'Chat', route: '/ChatAdminUserList',
   },
   {
     name: 'Historial', route: '/HistorialCompras',
@@ -122,7 +122,7 @@ function NavBar() {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {Cookies.get('logged') === 'true' ? (
+              {Cookies.get('email') === 'libreriauniverso.tiendaonline@gmail.com' ? (
                 pagesadmin.map((page) => (
                   <Button
                     key={page.name}
