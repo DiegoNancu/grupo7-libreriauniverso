@@ -9,16 +9,28 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate  } from 'react-router-dom';
 import logo from "../assets/logo.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuButton from '../components/MenuButton';
+import Cookies from 'js-cookie';
+
 
 const pages = [
+  {
+    name: 'Productos', route: '/ListProducts',
+  },
+  {
+    name: 'Chat', route: '/Chat',
+  },
+  {
+    name: 'Historial', route: '/HistorialCompras',
+  },
+];
+const pagesadmin = [
   {
     name: 'Productos', route: '/ListProducts',
   },
@@ -31,26 +43,22 @@ const pages = [
   {
     name: 'Cuadernillos', route: '/Cuadernillos',
   },
+  {
+  name: 'Admin', route: '/AdminPubli',
+  },
 ];
-
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [searchText, setSearchText] = React.useState('');
+  const history = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   const Search = styled('div')(({ theme }) => ({
@@ -83,7 +91,6 @@ function NavBar() {
     color: 'inherit',
     '& .MuiInputBase-input': {
       padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create('width'),
       width: '100%',
@@ -93,151 +100,145 @@ function NavBar() {
     },
   }));
 
-
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#335eff' }}>
+    <AppBar position="fixed" sx={{ backgroundColor: '#335eff'}}> 
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <Avatar sx={{ flexGrow: 1, display: { xs: 'flex' } }} alt="Remy Sharp" src={logo} />
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%'}}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+                display: { xs: 'none', md: 'block' },
               }}
             >
-              {pages.map((page) => (
+              <Avatar sx={{ flexGrow: 1, display: { xs: 'flex' } }} alt="Remy Sharp" src={logo} />
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {Cookies.get('logged') === 'true' ? (
+                pagesadmin.map((page) => (
+                  <Button
+                    key={page.name}
+                    onClick={handleCloseNavMenu}
+                    sx={{ mx: 2, color: 'white', display: 'block' }}
+                    component={Link}
+                    to={page.route}
+                  >
+                    {page.name}
+                  </Button>
+                ))
+              ) : (
+                pages.map((page) => (
+                  <Button
+                    key={page.name}
+                    onClick={handleCloseNavMenu}
+                    sx={{ mx: 2, color: 'white', display: 'block' }}
+                    component={Link}
+                    to={page.route}
+                  >
+                    {page.name}
+                  </Button>
+                ))
+              )}
+
+            </Box>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+              {Cookies.get('logged') === 'true' ? (
+                pagesadmin.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     {page.name}
                   </Typography>
                 </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+                ))
+              ) : (
+                pages.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    {page.name}
+                  </Typography>
+                </MenuItem>
+                ))
+              )}
+              </Menu>
+            </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
+            <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+
+                <StyledInputBase
+                  placeholder="Search…"
+                  autoFocus
+                  inputProps={{ 'aria-label': 'search' }}
+                  defaultValue={searchText}
+                  onInput={(event) => {
+                    setSearchText(event.target.value);
+                  }}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      console.log(event)
+                      // Realiza la redirección con el texto ingresado en el campo
+                      if (searchText.trim() !== '') {
+                        history(`/results/${searchText}`);
+                      }
+
+                    }
+                  }}
+                />
 
 
-          </Typography>
-          <Box sx={{ display: 'flex' }}>
-            {pages.map((page) => (
-              <Button
-                key={page.name}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-                component={Link}
-                to={page.route}
-              >
-                {page.name}
-              </Button>
-            ))}
-          </Box>
+              </Search>
+            </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }} >
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Search>
+            
           </Box>
           <MenuButton></MenuButton>
         </Toolbar>
       </Container>
-    </AppBar >
+    </AppBar>
   );
 }
+
 export default NavBar;
 
-/*
-
-<Box sx={{ flexGrow: 0 }}>
-<Tooltip title="Open settings">
-  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-  </IconButton>
-</Tooltip>
-<Menu
-  sx={{ mt: '45px' }}
-  id="menu-appbar"
-  anchorEl={anchorElUser}
-  anchorOrigin={{
-    vertical: 'top',
-    horizontal: 'right',
-  }}
-  keepMounted
-  transformOrigin={{
-    vertical: 'top',
-    horizontal: 'right',
-  }}
-  open={Boolean(anchorElUser)}
-  onClose={handleCloseUserMenu}
->
-{settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-</Menu>
-</Box>
-
-*/

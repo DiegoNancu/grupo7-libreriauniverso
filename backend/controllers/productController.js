@@ -25,11 +25,9 @@ const createProduct = (req, res) => {
   });
 
   newProduct.save((err, productSaved) => {
-
     if (err) {
       return res.status(400).send({ message: "Error al guardar el producto" });
     }
-
     return res.status(201).send({
       message: "Producto guardado",
       productSaved
@@ -42,14 +40,12 @@ const getProducts = (req, res) => {
     if (err) {
       return res.status(400).send({ message: "Error al obtener los productos" });
     }
-
     res.status(200).send({ products });
   });
 };
 
 const updateProducts = (req, res) => {
   const { id } = req.params;
-
   productoSchema.findByIdAndUpdate(id, req.body, (err, productUpdated) => {
     if (err) {
       return res.status(400).send({ message: "Error al actualizar el producto" });
@@ -63,7 +59,6 @@ const updateProducts = (req, res) => {
 
 const deleteProducts = (req, res) => {
   const { id } = req.params;
-
   productoSchema.findByIdAndDelete(id, (err, productDeleted) => {
     if (err) {
       return res.status(400).send({ message: "Error al eliminar el producto" });
@@ -89,10 +84,28 @@ const getProductById = (req, res) => {
   });
 };
 
+const getOneP = (req, res) => {
+
+  const { nameP } = req.params;
+
+  productoSchema.find({ nombre: { $regex: nameP, $options: 'i' } })
+    .then((results) => {
+      console.log(results);
+      res.status(200).json(results);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+
+}
+
+
 module.exports = {
   createProduct,
   getProducts,
   updateProducts,
   deleteProducts,
-  getProductById
+  getProductById,
+  getOneP
 };

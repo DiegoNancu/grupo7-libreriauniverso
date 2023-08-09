@@ -1,20 +1,20 @@
 import NavBar from '../components/NavBar';
-import GirdPro from '../components/GirdPro';
 
 import '../App.css';
+import PublicacionAdmin from './options/PublicacionAdmin';
 
 
-const ListProducts = () => {
+const AdminP = () => {
   return (
     <div className="container" >
       <NavBar /> {/* Agrega el componente NavBar aquí */}
       <div className="centered-container" style={{ marginTop: '80px' }}>
         <div className="content">
-          <GirdPro />
+            <PublicacionAdmin/>
         </div>
       </div>
     </div>
   );
 }
 
-export default ListProducts;
+export default AdminP;
