@@ -62,20 +62,20 @@ function MenuButton() {
   onClose={handleCloseUserMenu}
 >
 {Cookies.get('logged') === 'true' ? (
-    <>
+    <div>
         <MenuItem onClick={loginRouter}>
         <Typography textAlign="center">Cerrar Sesión</Typography>
       </MenuItem>
-    </>
+    </div>
     ):(
-        <>
+        <div>
         <MenuItem onClick={()=>navigate('/Login')}>
           <Typography textAlign="center">Iniciar Sesión</Typography>
         </MenuItem>
         <MenuItem onClick={()=>navigate('/SignUp')}>
         <Typography textAlign="center">Registrarse</Typography>
       </MenuItem>
-      </>
+      </div>
         )
 }
 </Menu>

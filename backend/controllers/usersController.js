@@ -83,7 +83,6 @@ const login = async (req, res) => {
 
     const getUserByEmail = (req, res) => {
       const { email } = req.params;
-      console.log(email)
       user.findOne({ email: email }, (err, person) => {
         if (err) {
           return res.status(400).send({ message: 'Error al buscar rut' });

@@ -31,7 +31,6 @@ const Product = () => {
     getCategory();
   }, [getCategory]);
 
-  console.log(data)
 
   const addToCart = (quantity) => {
     if (quantity <= data.stock) {
@@ -58,7 +57,6 @@ const Product = () => {
     }
   };
 
-  console.log(data.stock)
 
   return (
     <Card className="Product">
