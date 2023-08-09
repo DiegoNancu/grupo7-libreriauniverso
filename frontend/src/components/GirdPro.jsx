@@ -40,7 +40,7 @@ function FullWidthGrid() {
 
   const getCategory = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/listCat');
+      const response = await axios.get('http://146.83.198.35:1338/api/listCat');
       setData(response.data);
       setLoading(false);
     } catch (error) {

@@ -13,7 +13,7 @@ const Compras = () => {
   const [isLogged, setIsLogged] = useState(Cookies.get('logged') === 'true');
 
   const getUser = async () => {
-    const response = await axios.get(`http://localhost:3001/api/getUserByEmail/${Cookies.get('email')}`);
+    const response = await axios.get(`http://146.83.198.35:1338/api/getUserByEmail/${Cookies.get('email')}`);
     setUser(response.data);
   };
 
@@ -33,7 +33,7 @@ const Compras = () => {
   
   const getComprasByUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/getComprasByUser/${user._id}`);
+      const response = await axios.get(`http://146.83.198.35:1338/api/getComprasByUser/${user._id}`);
       //console.log(response.data);
       setCompras(response.data);
     } catch (error) {}

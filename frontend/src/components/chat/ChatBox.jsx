@@ -6,9 +6,9 @@ import Cookies from 'js-cookie';
 
 const INTERVAL = 1000
 
-const url = 'http://localhost:3001/api/getMensajes'
-const urlSend = 'http://localhost:3001/api/createMensaje'
-const urlUser = 'http://localhost:3001/api/getUserByEmail/'
+const url = 'http://146.83.198.35:1338/api/getMensajes'
+const urlSend = 'http://146.83.198.35:1338/api/createMensaje'
+const urlUser = 'http://146.83.198.35:1338/api/getUserByEmail/'
 
 const ChatBox = () => {
   const [ isLoading, setIsLoading ] = React.useState(true)

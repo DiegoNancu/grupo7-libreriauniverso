@@ -16,7 +16,7 @@ const UpdatePro = (data) => {
     let [values, setProducto] = useState(location.state)
 
     const categorias = async () => {
-        const cat  = await axios.get('http://localhost:3001/api/listCat')
+        const cat  = await axios.get('http://146.83.198.35:1338/api/listCat')
         setValcat(cat.data)
         setLoading(false);
     }
@@ -34,7 +34,7 @@ const UpdatePro = (data) => {
         }
 
         try {
-            const response = await axios.put(`http://localhost:3001/api/updatePro/${values._id}`, values)
+            const response = await axios.put(`http://146.83.198.35:1338/api/updatePro/${values._id}`, values)
             if (response.status === 200) {
                 Swal.fire({
                     title: 'Publicacion actualizada',

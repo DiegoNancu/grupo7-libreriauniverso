@@ -16,7 +16,7 @@ const Product = () => {
 
   const getCategory = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/listPro/search/${id}`);
+      const response = await axios.get(`http://146.83.198.35:1338/api/listPro/search/${id}`);
       setData(response.data.product);
       setLoading(false);
     } catch (error) {

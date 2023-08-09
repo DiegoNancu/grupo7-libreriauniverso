@@ -11,7 +11,7 @@
 
 //   const getProducts = useCallback(async () => {
 //     try {
-//       const response = await axios.get('http://localhost:3001/api/listPro/');
+//       const response = await axios.get('http://146.83.198.35:1338/api/listPro/');
 //       setData(response.data);
 //       setLoading(false);
 //     } catch (error) {
@@ -98,7 +98,7 @@ export default function Products({ selectedCategory, priceRange }) {
 
   const getProducts = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/listPro/');
+      const response = await axios.get('http://146.83.198.35:1338/api/listPro/');
       setData(response.data);
       setLoading(false);
     } catch (error) {

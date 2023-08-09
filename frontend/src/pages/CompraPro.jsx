@@ -33,8 +33,8 @@ const CompraPro = () => {
 
   const getCategory = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/listPro/search/${id}`);
-      const userId = await axios.get(`http://localhost:3001/api/getUserByEmail/${Cookies.get('email')}`);
+      const response = await axios.get(`http://146.83.198.35:1338/api/listPro/search/${id}`);
+      const userId = await axios.get(`http://146.83.198.35:1338/api/getUserByEmail/${Cookies.get('email')}`);
       setData(response.data.product);
       
       if(formData.nombreProducto === ''){
@@ -96,8 +96,8 @@ const CompraPro = () => {
         if (result.isConfirmed) {
           console.log(formData)
           console.log(compra)
-          axios.post('http://localhost:3001/api/sendEmail/', formData).then((response) => {
-            axios.post('http://localhost:3001/api/createCompra/', compra).then((response) => {
+          axios.post('http://146.83.198.35:1338/api/sendEmail/', formData).then((response) => {
+            axios.post('http://146.83.198.35:1338/api/createCompra/', compra).then((response) => {
               Swal.fire({
                 title: 'Compra realizada',
                 text: 'La compra se ha realizado exitosamente',

@@ -14,7 +14,7 @@ const PublicacionAdmin = () => {
 
     const getPublicacion = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/api/listPro');
+            const response = await axios.get('http://146.83.198.35:1338/api/listPro');
             setPublicacion(response.data.products);
         } catch (error) {
         }
@@ -36,7 +36,7 @@ const PublicacionAdmin = () => {
             });
 
             if (result.isConfirmed) {
-                await axios.delete(`http://localhost:3001/api/deletePro/${id}`);
+                await axios.delete(`http://146.83.198.35:1338/api/deletePro/${id}`);
                 getPublicacion();
             }
         } catch (error) {
