@@ -10,6 +10,7 @@ const catRoutes = require("./routes/categoriaRoutes");
 const comprasRoutes = require("./routes/comprasRoutes");
 const userRoutes = require("./routes/usersRoutes");
 const mensajeRoutes = require("./routes/mensajeRoutes");
+const mailRoutes = require("./routes/mailRoutes");
 
 mongoose.set('strictQuery', false);
 
@@ -22,6 +23,7 @@ app.use("/api", catRoutes);
 app.use("/api", comprasRoutes);
 app.use("/api", userRoutes);
 app.use("/api", mensajeRoutes);
+app.use("/api", mailRoutes);
 
 const options = {
   useNewUrlParser: true,

@@ -17,6 +17,7 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuButton from '../components/MenuButton';
 import Cookies from 'js-cookie';
+import TextField from '@mui/material/TextField';
 
 
 const pages = [
@@ -205,11 +206,10 @@ function NavBar() {
                 </SearchIconWrapper>
 
                 <StyledInputBase
-                  placeholder="Search…"
-                  autoFocus
+                  placeholder="Buscar…"
                   inputProps={{ 'aria-label': 'search' }}
-                  defaultValue={searchText}
-                  onInput={(event) => {
+                  value={searchText}
+                  onChange={(event) => {
                     setSearchText(event.target.value);
                   }}
                   onKeyPress={(event) => {

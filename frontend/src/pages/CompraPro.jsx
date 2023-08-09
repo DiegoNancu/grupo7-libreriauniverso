@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Container, Typography, Grid, Card, CardContent, TextField, Button } from '@mui/material';
+import { Container, Typography, Grid, Card, CardContent, TextField, Button,FormControl } from '@mui/material';
 import NavBar from "../components/NavBar"
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const CompraPro = () => {
 
@@ -10,55 +13,108 @@ const CompraPro = () => {
   const { cantidad } = useParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [rut, setRut] = useState('');
-
-
+  const history = useNavigate();
+  const currentDate = new Date();
+  const [isLogged, setIsLogged] = useState(Cookies.get('logged') === 'true');
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    nombreProducto: '',
+    nombre: '',
+    emailUsuario: '',
     rut : '',
     quantity: cantidad,
   });
-
+ 
+  const [compra, setCompra] = useState({
+    id_user: '',
+    id_producto: '',
+    fecha_compra: '',
+  });
 
   const getCategory = useCallback(async () => {
     try {
       const response = await axios.get(`http://localhost:3001/api/listPro/search/${id}`);
-      
+      const userId = await axios.get(`http://localhost:3001/api/getUserByEmail/${Cookies.get('email')}`);
       setData(response.data);
       
+      if(formData.nombreProducto === ''){
+        setFormData({
+          ...formData,
+          nombreProducto: response.data.nombre,
+        })
+
+        setCompra({
+          id_user: userId.data._id,
+          id_producto: response.data._id,
+          fecha_compra: currentDate.toISOString(),
+        });
+
+    }
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
       setLoading(false);
     }
-  }, [id]);
+  }, [currentDate, formData, id]);
+
 
   useEffect(() => {
     getCategory();
-  }, [getCategory]);
+  }, [compra.id_user, getCategory, isLogged]);
 
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
+	const onChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value
+		})
+	}
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log(isLogged)
+    if(isLogged === false){
+      Swal.fire({
+        title: 'Error',
+        text: 'Debes iniciar sesión para realizar la compra',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history(`/Login`);
+        }
+      })
+    }else{
+      Swal.fire({
+        title: 'Confirmar compra',
+        text: '¿Deseas confirmar la compra y enviar el correo electrónico?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, confirmar',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log(formData)
+          console.log(compra)
+          axios.post('http://localhost:3001/api/sendEmail/', formData).then((response) => {
+            axios.post('http://localhost:3001/api/createCompra/', compra).then((response) => {
+              Swal.fire({
+                title: 'Compra realizada',
+                text: 'La compra se ha realizado exitosamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  history(`/`);
+                }
+              })
+            })
+          })
+      }});
+    }
   };
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
 
-  const handleRutChange = (e) => {
-    setRut(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí puedes agregar lógica para enviar los datos del formulario y confirmar la compra
-    console.log('Formulario enviado:', formData);
-  };
 
   return (
     <Container>
@@ -76,33 +132,38 @@ const CompraPro = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <form onSubmit={()=>handleSubmit}>
+
             <TextField
+              autoFocus
               margin='normal'
               label="Nombre"
-              name="name"
-              onChange={()=>handleNameChange}
-              fullWidth
+              name="nombre"
+              variant="outlined"
+              inputProps={{ 'aria-label': 'search' }}
+              onInput={onChange}
               required
             />
-            <TextField
+          
+            <TextField    
               margin='normal'
               label="Correo Electrónico"
-              name="email"
+              name="emailUsuario"
               type="email"
-              onChange={()=>handleEmailChange}
-              fullWidth
+              variant="outlined"
+              onChange={onChange}
               required
             />
-            <TextField
+          
+            <TextField    
               margin='normal'
-              label="rut"
+              label="Rut"
               name="rut"
-              onChange={ ()=>handleRutChange}
-              fullWidth
+              variant="outlined"
+              onChange={onChange}
               required
             />
-            <TextField
+            
+            <TextField  
               margin='normal'
               label="Cantidad"
               name="quantity"
@@ -112,10 +173,9 @@ const CompraPro = () => {
               required
               disabled
             />
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button type="submit" variant="contained" color="primary" fullWidth onClick={handleSubmit}>
               Confirmar Compra
             </Button>
-          </form>
         </Grid>
       </Grid>
     </Container>
