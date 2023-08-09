@@ -4,24 +4,42 @@ const bcrypt = require("bcrypt");
 const sign_up = async (req, res) => {
     const { name, rut , email, number} = req.body;
     const password = await bcrypt.hash(req.body.password, 10);
+    if (!name || !rut || !email || !number || !password) {
+      return res.status(400).send({ message: "Todos los campos son obligatorios." });
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+    return res.status(400).send({ message: "Formato de correo electrónico inválido." });
+    }
+    const rutRegex = /^(\d{1,3}(\.\d{3}){2}-[\dkK])|([\dkK])$/;
+
+    if (!rutRegex.test(rut)) {
+        return res.status(400).send({ message: "Formato de RUT inválido." });
+    }
+    const nameRegex = /^[A-Za-z\sáéíóúÁÉÍÓÚñÑ]+$/;
+
+    if (!nameRegex.test(name)) {
+      return res.status(400).send({ mesagge: "El nombre solo debe poseer carácteres del alfabeto"});
+    }
+    if (number.length !== 9){
+      return res.status(400).send({ mesagge: "El número de teléfono debe contener 9 dígitos."})
+    }
     const newUser = new user({
-        name,
-        password,
-        rut,
-        email,
-        number,
-        });
-        newUser.save((error, Newperson) => {
-            if (error) {
-                console.log(error);
-                return res.status(400).send({ message: "Error al registrarse." });
-            }
-            try {
-                return res.status(201).send(Newperson);
-                } catch (error) {
-                console.log(error)
-            }
-        });
+      name,
+      password,
+      rut,
+      email,
+      number,
+  });
+
+  newUser.save((error, Newperson) => {
+      if (error) {
+          console.log(error);
+          return res.status(400).send({ message: "Error al registrarse." });
+      }
+      return res.status(201).send(Newperson);
+  });
 }
 
 const login = async (req, res) => {

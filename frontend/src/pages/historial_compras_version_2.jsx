@@ -26,7 +26,6 @@ const Compras = () => {
   useEffect(() => {
     if (user.user !== null) {
       getComprasByUser();
-      //console.log(compras);
     }
   }, [user]);
 
@@ -43,9 +42,6 @@ const Compras = () => {
   const reclamos = (id) => {
     Cookies.set('idCompras', id);
   };
-
-
-
 
 
   const showCompras = () => {

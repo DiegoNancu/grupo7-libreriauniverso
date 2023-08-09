@@ -7,6 +7,8 @@ import Cookies from 'js-cookie';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from "react-router-dom";
+import FormHelperText from '@mui/material/FormHelperText';
+import ErrorIcon from '@mui/icons-material/Error';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +27,18 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+    // Validar el formato del correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(values.email)) {
+        Swal.fire({
+            title: 'Error',
+            text: 'El correo electrónico no tiene un formato válido.',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+        });
+        return;
+    }
     try {
       const response = await axios.post(`http://localhost:3001/api/login`, values);
       Cookies.set('email', response.data.person);
@@ -59,7 +72,18 @@ const Login = () => {
     }
   };
 
+  const [validFields, setValidFields] = useState({
+    email: true,
+});
+
   const onChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'email') {
+      setValidFields((prevValidFields) => ({
+          ...prevValidFields,
+          email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+      }));
+    }
     setValues({
       ...values,
       [e.target.name]: e.target.value,
@@ -75,8 +99,21 @@ const Login = () => {
           </Typography>
           <Stack my={4} spacing={4}>
             <FormControl fullWidth id="email">
-              <FormLabel fontSize="30">Correo</FormLabel>
-              <Input onChange={onChange} name="email" placeholder="correo@gmail.com" type="email" />
+            <FormLabel fontSize="32px">Email.</FormLabel>
+    <Input
+        placeholder="Ej: pedro.martinez@gmail.com"
+        type="email"
+        maxLength={100}
+        onChange={onChange}
+        name="email"
+        sx={{ backgroundColor: validFields.email ? 'white' : '#FFC0CB' }}
+    />
+    {!validFields.email && (
+        <FormHelperText error>
+            <ErrorIcon sx={{ marginRight: 1 }} />
+            El correo electrónico no tiene un formato válido.
+        </FormHelperText>
+    )}
             </FormControl>
             <FormControl fullWidth id="password">
               <FormLabel fontSize="30">Contraseña</FormLabel>

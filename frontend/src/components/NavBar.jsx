@@ -35,13 +35,10 @@ const pagesadmin = [
     name: 'Productos', route: '/ListProducts',
   },
   {
-    name: 'Libros', route: '/Libros',
+    name: 'Chat', route: '/Chat',
   },
   {
-    name: 'Tecnologia', route: '/Tecnologia',
-  },
-  {
-    name: 'Cuadernillos', route: '/Cuadernillos',
+    name: 'Historial', route: '/HistorialCompras',
   },
   {
   name: 'Admin', route: '/AdminPubli',
