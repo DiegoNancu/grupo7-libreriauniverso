@@ -17,7 +17,11 @@ const SignUp = () => {
     password: '',
     number: '',
   });
-
+  const [email1, setEmail] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
@@ -86,6 +90,8 @@ const SignUp = () => {
           icon: 'success',
           confirmButtonText: 'Ok',
         }).then((result) => {
+          console.log(email1);
+          axios.post(`http://localhost:3001/api/sendEmailSingUp`, email1);
           if (result.isConfirmed) {
             navigate('/Login');
           }
@@ -107,7 +113,7 @@ const SignUp = () => {
       });
     }
   };
-  
+
   const [validFields, setValidFields] = useState({
     name: true,
     rut: true,
@@ -152,6 +158,11 @@ const SignUp = () => {
         ...values,
         [name]: value,
     });
+        setEmail({
+            ...values,
+            [e.target.name]: e.target.value,
+        })
+    console.log(email1);
 };
 
   return (
