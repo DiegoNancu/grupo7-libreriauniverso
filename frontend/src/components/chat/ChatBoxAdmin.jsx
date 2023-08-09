@@ -35,7 +35,7 @@ const ChatBox = () => {
 
   const handleSend = () => {
     const value = {
-      origen: "0.000.000-0",
+      origen: "00.000.000-0",
       destino: usuario.rut,
       contenido: mensaje
     }
@@ -86,13 +86,13 @@ const ChatBox = () => {
               borderRadius: '10px',
               boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
               height: 'auto',
-              alignSelf: mensaje.origen === "0.000.000-0" ? 'flex-end' : 'flex-start',
-              textAlign: mensaje.origen === "0.000.000-0" ? 'right' : 'left'
+              alignSelf: mensaje.origen === "00.000.000-0" ? 'flex-end' : 'flex-start',
+              textAlign: mensaje.origen === "00.000.000-0" ? 'right' : 'left'
             }}
           >
             <CardContent>
               <Typography sx={{ fontSize: 12 }} gutterBottom>
-                {mensaje.origen === "0.000.000-0" ? "Libreria Universo" : usuario.name}
+                {mensaje.origen === "00.000.000-0" ? "Libreria Universo" : usuario.name}
               </Typography>
               <Typography sx={{ fontSize: 16 }}>
                 {mensaje.contenido}

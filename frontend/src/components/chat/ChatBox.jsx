@@ -33,7 +33,7 @@ const ChatBox = () => {
   const handleSend = () => {
     const value = {
       origen: usuario.rut,
-      destino: "0.000.000-0",
+      destino: "00.000.000-0",
       contenido: mensaje
     }
     axios.post(urlSend, value).then(() => {
@@ -83,13 +83,13 @@ const ChatBox = () => {
               borderRadius: '10px',
               boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
               height: 'auto',
-              alignSelf: mensaje.origen === "0.000.000-0" ? 'flex-start' : 'flex-end',
-              textAlign: mensaje.origen === "0.000.000-0" ? 'left' : 'right'
+              alignSelf: mensaje.origen === "00.000.000-0" ? 'flex-start' : 'flex-end',
+              textAlign: mensaje.origen === "00.000.000-0" ? 'left' : 'right'
             }}
           >
             <CardContent>
               <Typography sx={{ fontSize: 12 }} gutterBottom>
-                {mensaje.origen === "0.000.000-0" ? "Libreria Universo" : usuario.name}
+                {mensaje.origen === "00.000.000-0" ? "Libreria Universo" : usuario.name}
               </Typography>
               <Typography sx={{ fontSize: 16 }}>
                 {mensaje.contenido}
