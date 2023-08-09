@@ -5,12 +5,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import logo from "../../assets/logo.jpg";
+import { useNavigate  } from 'react-router-dom';
 
 export default function ActionAreaCard({ product }) {
+  const navigator = useNavigate();
 
   return (
     <Card sx={{ width: 200,height: 300, marginBottom: 2, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.3)' }}>
-      <CardActionArea  sx={{ width: 200,height:300 }}>
+      <CardActionArea  sx={{ width: 200,height:300 }} onClick={()=> navigator(`/Vproduct/${product._id}`)}>
         <CardMedia
           component="img"
           height="150"
