@@ -75,7 +75,6 @@ const UpdatePro = (data) => {
         <div>
         <Stack alignItems="center" textAlign="center" spacing={{ xs: 1, sm: 2, md: 4 }} marginTop={"80px"}>
             <Card sx={{ backgroundColor: 'white', borderRadius: 10, boxShadow: 'md' }}>
-            </Card>
             <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Typography variant="h4" my={4}>Actualización de Producto</Typography>
             <Stack my={4} spacing={{ xs: 1, sm: 2, md: 4 }}>
@@ -95,6 +94,7 @@ const UpdatePro = (data) => {
                         name= "costo"
                         defaultValue={values.costo}
                         onChange={onChange}
+                        inputProps={{ min: 0 }}
                     />
                 </FormControl>
                 <FormControl>
@@ -104,6 +104,7 @@ const UpdatePro = (data) => {
                         name= "precio_venta"
                         defaultValue={values.precio_venta}
                         onChange={onChange}
+                        inputProps={{ min: 0 }}
                     />
                 </FormControl>
                 <FormControl variant='filled'>
@@ -113,6 +114,7 @@ const UpdatePro = (data) => {
                         name="stock"
                         defaultValue={values.stock}
                         onChange={onChange}
+                        inputProps={{ min: 0 }}
                     />
                 </FormControl>
                 <FormControl>
@@ -150,6 +152,7 @@ const UpdatePro = (data) => {
                 </Stack>
             </Stack>
             </Container>
+            </Card>
         </Stack>
         </div>
     )

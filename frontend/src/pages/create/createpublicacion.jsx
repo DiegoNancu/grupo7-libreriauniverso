@@ -1,7 +1,7 @@
 import { useState  ,  useEffect} from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { Stack, Container, Typography, TextField, Button, MenuItem, Select, CircularProgress } from '@mui/material';
+import { Stack, Container, Typography, TextField, Button, MenuItem, Select, CircularProgress, InputLabel, FormControl, Card } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -81,6 +81,7 @@ const CreatePublicacion = () => {
 
     return(
         <Stack alignItems="center" textAlign="center" spacing={2} marginTop={"80px"}>
+            <Card sx={{ backgroundColor: 'white', borderRadius: 10, boxShadow: 'md' }}>
             <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="h4" my={4}>Creacion de Producto</Typography>
                 <Stack my={4} alignItems="center" textAlign="center" spacing={2}>
@@ -90,6 +91,7 @@ const CreatePublicacion = () => {
                         onChange={onChange}
                         name="nombre"
                         variant="outlined"
+                        sx={{ width: '300px' }}
                     />
                     <TextField
                         label="Costo"
@@ -98,6 +100,8 @@ const CreatePublicacion = () => {
                         name="costo"
                         rows={1}
                         variant="outlined"
+                        sx={{ width: '300px' }}
+                        inputProps={{ min: 0 }}
                     />
                     <TextField
                         label="Precio Venta"
@@ -106,6 +110,8 @@ const CreatePublicacion = () => {
                         name="precio_venta"
                         rows={1}
                         variant="outlined"
+                        sx={{ width: '300px' }}
+                        inputProps={{ min: 0 }}
                     />
                     <TextField
                         label="Stock"
@@ -114,14 +120,19 @@ const CreatePublicacion = () => {
                         name="stock"
                         rows={1}
                         variant="outlined"
+                        sx={{ width: '300px' }}
+                        inputProps={{ min: 0 }}
                     />
+                    <FormControl fullWidth>
+                    <InputLabel id="category-label">Categoría</InputLabel>
                     <Select
+                        label="Categoria"
                         labelId="category-label"
                         onChange={onChange}
                         name="categoria"
                         autoWidth
                         sx={{
-                        width: "225px",
+                        width: "300px",
                         backgroundColor: '#fffff',
                         '& .MuiSelect-icon': {
                         color: '#555555',
@@ -142,12 +153,14 @@ const CreatePublicacion = () => {
                         </MenuItem>
                     ))}
                     </Select>
+                    </FormControl>
                     <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap" >
                         <Button variant="contained" color="primary" onClick={onSubmit}>Crear</Button>
                         <Button variant="contained" color="error" onClick={publicacionRouter}>Cancelar</Button>
                     </Stack>
                 </Stack>
             </Container>
+            </Card>
         </Stack>
     )
 }

@@ -8,7 +8,7 @@ const productoSchema = new Schema({
   },
   costo: {
     type: Number,
-    required: true
+    required: true,
   },
   precio_venta: {
     type: Number,
