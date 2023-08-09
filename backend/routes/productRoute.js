@@ -7,6 +7,6 @@ api.get('/listPro', proController.getProducts);
 api.get('/getOneP/:nameP', proController.getOneP);
 api.put('/updatePro/:id', proController.updateProducts);
 api.delete('/deletePro/:id', proController.deleteProducts);
-api.get('/listPro/search/:id', proController.getProductsById);
+api.get('/listPro/search/:id', proController.getProductById);
 
 module.exports = api;

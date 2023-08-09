@@ -70,6 +70,19 @@ const deleteProducts = (req, res) => {
   });
 }
 
+const getProductById = (req, res) => {
+  const { id } = req.params;
+  productoSchema.findById( id , (err, product) => {
+    if (err) {
+      return res.status(400).send({ message: "Error al obtener el producto" });
+    }
+    if (!product){
+      return res.status(404).send({ message: "Producto no encontrado."});
+    }
+
+    res.status(200).send({ product });
+  });
+};
 
 const getOneP = (req, res) => {
 
@@ -88,24 +101,11 @@ const getOneP = (req, res) => {
 }
 
 
-const getProductsById = (req, res) => {
-  const { id } = req.params;
-  productoSchema.findById(id, (error, products) => {
-    if (error) {
-      return res.status(400).send({message: "Error."});
-    }
-    if (!products) {
-      return res.status(404).send({message: "Producto no encontrado."});
-    }
-    return res.status(200).send(products);
-  })
-}
-
 module.exports = {
   createProduct,
   getProducts,
   updateProducts,
   deleteProducts,
-  getOneP,
-  getProductsById
+  getProductById,
+  getOneP
 };

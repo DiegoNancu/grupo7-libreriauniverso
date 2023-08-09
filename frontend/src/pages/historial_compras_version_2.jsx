@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 
 const Compras = () => {
   const [compras, setCompras] = useState([]);
+
   const [user, setUser] = useState({ user: null, loading: false });
   const [isLogged, setIsLogged] = useState(Cookies.get('logged') === 'true');
 
@@ -25,14 +26,15 @@ const Compras = () => {
   useEffect(() => {
     if (user.user !== null) {
       getComprasByUser();
-      //console.log(compras);
     }
   }, [user]);
 
+
+  
   const getComprasByUser = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/api/getComprasByUser/${user._id}`);
-      console.log(response.data);
+      //console.log(response.data);
       setCompras(response.data);
     } catch (error) {}
   };
@@ -41,9 +43,8 @@ const Compras = () => {
     Cookies.set('idCompras', id);
   };
 
+
   const showCompras = () => {
-    //console.log(compras);
-    //console.log(compras.length);
     if (compras.length === 0) {
       return (
         <Card sx={{ boxShadow: 'lg', marginLeft: 30, marginTop: 4, border: '1px solid', borderColor: '#AEDBC4' }}>
@@ -89,3 +90,4 @@ const Compras = () => {
 };
 
 export default Compras;
+
