@@ -1,4 +1,4 @@
-import { Card, CardContent, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack, TextField, Typography } from '@mui/material';
+import { Card, CardContent, FormControl, IconButton, InputAdornment, InputLabel, List, ListItem, ListItemButton, ListItemText, OutlinedInput, Stack, TextField, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import React from 'react';
 import axios from 'axios';
@@ -25,8 +25,8 @@ const ChatBoxAdmin = () => {
 
   const handleSend = () => {
     const value = {
-      origen: "20.570.846-4",
-      destino: "0.000.000-0",
+      origen: "0.000.000-0",
+      destino: "20.570.846-4",
       contenido: mensaje
     }
     axios.post(urlSend, value).then(() => {
