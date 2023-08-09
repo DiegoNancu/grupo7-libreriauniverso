@@ -74,7 +74,7 @@ const UpdatePro = () => {
     return (
         <div>
             <Stack alignItems="center" textAlign="center" spacing={{ xs: 1, sm: 2, md: 4 }} marginTop={"80px"}>
-                <Card sx={{ backgroundColor: 'white', borderRadius: 10, boxShadow: 'md' }}>
+                <Card sx={{ backgroundColor: '#F9F9F9', borderRadius: 10, boxShadow: 'md' }}>
                     <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Typography variant="h4" my={4}>Actualización de Producto</Typography>
                         <Stack my={4} spacing={{ xs: 1, sm: 2, md: 4 }}>

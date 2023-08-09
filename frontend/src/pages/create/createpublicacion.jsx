@@ -81,7 +81,7 @@ const CreatePublicacion = () => {
 
     return(
         <Stack alignItems="center" textAlign="center" spacing={2} marginTop={"80px"}>
-            <Card sx={{ backgroundColor: 'white', borderRadius: 10, boxShadow: 'md' }}>
+            <Card sx={{ backgroundColor: '#F9F9F9', borderRadius: 10, boxShadow: 'md' }}>
             <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="h4" my={4}>Creacion de Producto</Typography>
                 <Stack my={4} alignItems="center" textAlign="center" spacing={2}>
