@@ -29,7 +29,7 @@ const getMensaje = (req, res) => {
 const getMensajes = (req, res) => {
   console.log(req.query);
   const { origen } = req.query;
-  const destino = "0.000.000-0";
+  const destino = "00.000.000-0";
 
   mensaje.find({ $or: [ { origen, destino }, { origen: destino, destino: origen }, ], }, (error, mensajes) => {
     if(error) return res.status(400).send({ message: 'Error al buscar los mensajes.' });
