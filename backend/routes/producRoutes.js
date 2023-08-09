@@ -6,5 +6,6 @@ api.post('/addPro', proController.createProduct);
 api.get('/listPro', proController.getProducts);
 api.put('/updatePro/:id', proController.updateProducts);
 api.delete('/deletePro/:id', proController.deleteProducts);
+api.get('/getProById/:id', proController.getProductById);
 
 module.exports = api;

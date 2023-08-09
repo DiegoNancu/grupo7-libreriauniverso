@@ -15,7 +15,6 @@ const SignUp = () => {
     email: '',
     password: '',
     number: '',
-    id_Companys: '',
   });
 
   const navigate = useNavigate();
@@ -34,7 +33,7 @@ const SignUp = () => {
           confirmButtonText: 'Ok',
         }).then((result) => {
           if (result.isConfirmed) {
-            navigate.push('/Login');
+            navigate('/Login');
           }
         });
       } else {
