@@ -55,3 +55,18 @@
   width: 100%;
   max-width: 1000px;
 }
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.product {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+}
