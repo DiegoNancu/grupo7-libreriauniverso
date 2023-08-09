@@ -11,6 +11,8 @@ import SignUp from './pages/sign_up'
 import Login from './pages/login';
 import Reclamos from './pages/Reclamos'
 import ChatAdmin from './pages/admin/ChatAdmin';
+import Vproduct from './pages/Vproduct';
+import CompraPro from './pages/CompraPro';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
         <Route path="/SignUp" element={<SignUp/>}/>
         <Route path="/Login" element={<Login/>}/>
         <Route path="/Reclamos" element={<Reclamos/>}/>
+        <Route path="/Vproduct/:id" element={<Vproduct />} />
+        <Route path="/cart/:id/:cantidad" element={<CompraPro />} />
       </Routes>
     </BrowserRouter>
   );
