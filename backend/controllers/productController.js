@@ -73,8 +73,6 @@ const deleteProducts = (req, res) => {
 const getProductById = (req, res) => {
   const { id } = req.params;
 
-  console.log(id);
-
   productoSchema.findById( id , (err, product) => {
     if (err) {
       return res.status(400).send({ message: "Error al obtener el producto" });
@@ -103,6 +101,24 @@ const getOneP = (req, res) => {
 
 }
 
+const deleteStock = (req, res) => {
+
+  const { id } = req.params;
+
+
+  productoSchema.findByIdAndUpdate(id, req.body, (err, productUpdated) => {
+    if (err) {
+      return res.status(400).send({ message: "Error al actualizar el producto" });
+    }
+    if (!productUpdated) {
+      return res.status(404).send({ message: "Producto no encontrado" });
+    }
+    return res.status(200).send({ message: "Producto actualizado" });
+  });
+
+}
+
+
 
 module.exports = {
   createProduct,
@@ -110,5 +126,6 @@ module.exports = {
   updateProducts,
   deleteProducts,
   getProductById,
-  getOneP
+  getOneP,
+  deleteStock
 };

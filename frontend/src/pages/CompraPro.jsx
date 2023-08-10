@@ -31,10 +31,18 @@ const CompraPro = () => {
     fecha_compra: '',
   });
 
+  const [actualizarP, setActualizarP] = useState({
+    nombre: '',
+    costo: '',	
+    precio_venta: '',
+    stock: '',
+    categoria: [],
+  });
+
   const getCategory = useCallback(async () => {
     try {
-      const response = await axios.get(`http://146.83.198.35:1338/api/listPro/search/${id}`);
-      const userId = await axios.get(`http://146.83.198.35:1338/api/getUserByEmail/${Cookies.get('email')}`);
+      const response = await axios.get(`http://localhost:3001/api/listPro/search/${id}`);
+      const userId = await axios.get(`http://localhost:3001/api/getUserByEmail/${Cookies.get('email')}`);
       setData(response.data.product);
       
       if(formData.nombreProducto === ''){
@@ -49,13 +57,22 @@ const CompraPro = () => {
           fecha_compra: currentDate.toISOString(),
         });
 
+        setActualizarP({
+          nombre: response.data.product.nombre,
+          costo: response.data.product.costo,
+          precio_venta: response.data.product.precio_venta,
+          stock: response.data.product.stock - cantidad,
+          categoria: response.data.product.categoria[0],
+        });
+        
+
     }
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
       setLoading(false);
     }
-  }, [currentDate, formData, id]);
+  }, [cantidad, currentDate, formData, id]);
 
 
   useEffect(() => {
@@ -72,7 +89,7 @@ const CompraPro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(isLogged)
+
     if(isLogged === false){
       Swal.fire({
         title: 'Error',
@@ -94,10 +111,8 @@ const CompraPro = () => {
         cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log(formData)
-          console.log(compra)
-          axios.post('http://146.83.198.35:1338/api/sendEmail/', formData).then((response) => {
-            axios.post('http://146.83.198.35:1338/api/createCompra/', compra).then((response) => {
+          axios.post('http://localhost:3001/api/sendEmail/', formData).then((response) => {
+            axios.post('http://localhost:3001/api/createCompra/', compra).then((response) => {
               Swal.fire({
                 title: 'Compra realizada',
                 text: 'La compra se ha realizado exitosamente',
@@ -105,6 +120,8 @@ const CompraPro = () => {
                 confirmButtonText: 'Aceptar',
               }).then((result) => {
                 if (result.isConfirmed) {
+                  
+                  axios.put(`http://localhost:3001/api/updateStock/${data._id}`, actualizarP);
                   history(`/`);
                 }
               })
@@ -113,7 +130,6 @@ const CompraPro = () => {
       }});
     }
   };
-
 
 
   return (

@@ -3,7 +3,7 @@ import axios from 'axios'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const url = 'http://146.83.198.35:1338/api/getUsersAll'
+const url = 'http://localhost:3001/api/getUsersAll'
 
 function ChatUserList() {
   const [ isLoading, setIsLoading ] = React.useState(true)

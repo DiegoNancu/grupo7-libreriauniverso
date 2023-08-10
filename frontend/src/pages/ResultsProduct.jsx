@@ -26,7 +26,7 @@ function ResultsProduct() {
 
   const getCategory = useCallback(async () => {
     try {
-      const response = await axios.get(`http://146.83.198.35:1338/api/getOneP/${nameP}`);
+      const response = await axios.get(`http://localhost:3001/api/getOneP/${nameP}`);
       
       setData(response.data);
       

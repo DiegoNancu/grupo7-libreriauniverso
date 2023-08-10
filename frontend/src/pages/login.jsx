@@ -40,7 +40,7 @@ const Login = () => {
         return;
     }
     try {
-      const response = await axios.post(`http://146.83.198.35:1338/api/login`, values);
+      const response = await axios.post(`http://localhost:3001/api/login`, values);
       Cookies.set('email', response.data.person);
       Cookies.set('logged', 'true');
       if (response.status === 201) {

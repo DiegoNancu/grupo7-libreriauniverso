@@ -26,7 +26,7 @@ const CreatePublicacion = () => {
     const [valcat, setValcat] = useState([])
 
     const categorias = async () => {
-        const cat  = await axios.get('http://146.83.198.35:1338/api/listCat')
+        const cat  = await axios.get('http://localhost:3001/api/listCat')
         setValcat(cat.data)
         setLoading(false);
     }
@@ -41,7 +41,7 @@ const CreatePublicacion = () => {
         e.preventDefault()
         console.log(values)
         try{
-            const response = await axios.post(`http://146.83.198.35:1338/api/addPro`, values)
+            const response = await axios.post(`http://localhost:3001/api/addPro`, values)
             console.log(response)
             if(response.status === 201){
                 Swal.fire({

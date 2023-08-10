@@ -82,7 +82,7 @@ const SignUp = () => {
     }
     //console.log(values);
     try {
-      const response = await axios.post(`http://146.83.198.35:1338/api/sign_up`, values);
+      const response = await axios.post(`http://localhost:3001/api/sign_up`, values);
       if (response.status === 201) {
         Swal.fire({
           title: 'Usuario creado',
@@ -91,7 +91,7 @@ const SignUp = () => {
           confirmButtonText: 'Ok',
         }).then((result) => {
           console.log(email1);
-          axios.post(`http://146.83.198.35:1338/api/sendEmailSingUp`, email1);
+          axios.post(`http://localhost:3001/api/sendEmailSingUp`, email1);
           if (result.isConfirmed) {
             navigate('/Login');
           }

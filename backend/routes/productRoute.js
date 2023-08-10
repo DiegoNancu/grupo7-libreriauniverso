@@ -8,5 +8,6 @@ api.get('/getOneP/:nameP', proController.getOneP);
 api.put('/updatePro/:id', proController.updateProducts);
 api.delete('/deletePro/:id', proController.deleteProducts);
 api.get('/listPro/search/:id', proController.getProductById);
+api.put('/updateStock/:id', proController.deleteStock);
 
 module.exports = api;
