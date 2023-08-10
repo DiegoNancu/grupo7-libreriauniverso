@@ -40,7 +40,7 @@ function FullWidthGrid() {
 
   const getCategory = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/listCat');
+      const response = await axios.get('http://146.83.198.35:1338/api/listCat');
       setData(response.data);
       setLoading(false);
     } catch (error) {
@@ -74,7 +74,7 @@ function FullWidthGrid() {
 
   return (
     <Box>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} >
         {!isLargeScreen && (
           <Button onClick={toggleDrawer}>
             {isDrawerOpen ? 'Cerrar filtros' : 'Abrir filtros'}
@@ -215,10 +215,14 @@ function FullWidthGrid() {
           </Drawer>
         )}
 
-        <Grid item marginLeft={isLargeScreen ? 4 : 0}>
+        <Grid item xs={12} sm={isLargeScreen ? 8 : 12}>
+            {/* Productos */}
           <Products selectedCategory={selectedCategory} priceRange={priceRange} />
         </Grid>
+
+
       </Grid>
+        
     </Box>
   );
 }

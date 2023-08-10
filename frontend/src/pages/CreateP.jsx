@@ -1,18 +1,20 @@
 import NavBar from '../components/NavBar';
-import ChatBox from '../components/chat/ChatBox';
+
+import '../App.css';
+import CreatePublicacion from './create/createpublicacion';
 
 
-const Chat = () => {
+const CreateP = () => {
   return (
     <div className="container">
       <NavBar /> {/* Agrega el componente NavBar aquí */}
-      <div className="centered-container" style={{ paddingTop: '80px' }}>
+      <div className="centered-container">
         <div className="content">
-          <ChatBox/>
+            <CreatePublicacion/>
         </div>
       </div>
     </div>
   );
 }
 
-export default Chat;
+export default CreateP;

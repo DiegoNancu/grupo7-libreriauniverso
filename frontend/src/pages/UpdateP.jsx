@@ -1,18 +1,20 @@
 import NavBar from '../components/NavBar';
-import ChatBox from '../components/chat/ChatBox';
+
+import '../App.css';
+import UpdatePro from './updatePublicacion/updatePublicacion';
 
 
-const Chat = () => {
+const UpdateP = () => {
   return (
     <div className="container">
       <NavBar /> {/* Agrega el componente NavBar aquí */}
-      <div className="centered-container" style={{ paddingTop: '80px' }}>
+      <div className="centered-container">
         <div className="content">
-          <ChatBox/>
+            <UpdatePro/>
         </div>
       </div>
     </div>
   );
 }
 
-export default Chat;
+export default UpdateP;

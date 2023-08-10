@@ -5,9 +5,14 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 
-const proRoutes = require("./routes/producRoutes");
+const proRoutes = require("./routes/productRoute");
 const catRoutes = require("./routes/categoriaRoutes");
 const comentarioRoutes = require("./routes/comentarioRoutes");
+const comprasRoutes = require("./routes/comprasRoutes");
+const userRoutes = require("./routes/usersRoutes");
+const mensajeRoutes = require("./routes/mensajeRoutes");
+const mailRoutes = require("./routes/mailRoutes");
+
 mongoose.set('strictQuery', false);
 
 
@@ -17,6 +22,10 @@ app.options("*", cors());
 app.use("/api", proRoutes);
 app.use("/api", catRoutes);
 app.use("/api", comentarioRoutes);
+app.use("/api", comprasRoutes);
+app.use("/api", userRoutes);
+app.use("/api", mensajeRoutes);
+app.use("/api", mailRoutes);
 
 const options = {
   useNewUrlParser: true,
