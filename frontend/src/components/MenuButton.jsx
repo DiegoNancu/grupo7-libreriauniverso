@@ -18,7 +18,7 @@ function MenuButton() {
 
     const loginRouter = () => {
         Cookies.set('logged', 'false');
-        Cookies.set('rut', '');
+        Cookies.set('email', '');
         navigate('/');
       }
 

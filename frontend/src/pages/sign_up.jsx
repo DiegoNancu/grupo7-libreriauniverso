@@ -5,6 +5,7 @@ import { Link,  useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import FormHelperText from '@mui/material/FormHelperText';
 import ErrorIcon from '@mui/icons-material/Error';
+import ChileanRutify from 'chilean-rutify';
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -80,7 +81,15 @@ const SignUp = () => {
         });
         return; // Detener el proceso de envío
     }
-    //console.log(values);
+    if(ChileanRutify.validRut(values.rut)===false){
+      Swal.fire({
+        title: 'Error',
+        text: 'El rut ingresado no existe, por favor, ingrese un rut válido.',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+    });
+    return;
+    }
     try {
       const response = await axios.post(`http://localhost:3001/api/sign_up`, values);
       if (response.status === 201) {
