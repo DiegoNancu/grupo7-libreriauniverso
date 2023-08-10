@@ -89,7 +89,7 @@ const Product = () => {
             </div>
             <div style={{ margin: '10px 0' }}>
               <Typography variant="body2">
-                Disponibilidad: {data.stock > 0 ? 'Disponible' : 'Agotado'}
+                Disponibilidad: {data.stock > 0 ? data.stock : 'Agotado'}
               </Typography>
             </div>
             <div style={{ margin: '10px 0' }}>
