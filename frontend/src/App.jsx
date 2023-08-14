@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
 import ListProducts from "./pages/ListProducts";
-import AddProduct from "./pages/admin/adminProducts";
+
 import Chat from './pages/Chat';
 import HistorialCompras from './pages/historial_compras_version_2'
 import SignUp from './pages/sign_up'
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ListProducts" element={<ListProducts />} />
-        <Route path="/AddProduct" element={<AddProduct />} />
+        
         <Route path="/Chat" element={<Chat />} />
         <Route path="/ChatAdmin" element={<ChatAdmin />} />
         <Route path="/ChatAdminUserList" element={<ChatAdminUserList />} />

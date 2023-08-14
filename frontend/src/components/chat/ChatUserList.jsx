@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemButton, ListItemText, Stack } from '@mui/material'
+import { Card, CardContent, List, ListItem, ListItemButton, ListItemText, Stack } from '@mui/material'
 import axios from 'axios'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -28,16 +28,18 @@ function ChatUserList() {
   }
 
   return (
-    <Stack>
-      <List>
-        {usuariosFiltrados.map((usuario) => (
-          <ListItem key={usuario._id} onClick={() => {navigate("/ChatAdmin", { state: usuario.email })}}>
-            <ListItemButton>
-              <ListItemText primary={"Hablar con " + usuario.name} secondary={"Rut: " + usuario.rut}/>
-            </ListItemButton>
-          </ListItem>
+    <Stack spacing={1}>
+      {usuariosFiltrados.map((usuario) => (
+        <Card key={usuario._id} sx={{ backgroundColor: '#F6F1F1' }}>
+          <CardContent>
+            <ListItem onClick={() => {navigate("/ChatAdmin", { state: usuario.email })}}>
+              <ListItemButton>
+                <ListItemText primary={"Hablar con " + usuario.name} secondary={"Rut: " + usuario.rut}/>
+              </ListItemButton>
+            </ListItem>
+          </CardContent>
+        </Card>
         ))}
-      </List>
     </Stack>
   )
 }
